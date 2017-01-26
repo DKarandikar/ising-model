@@ -72,16 +72,16 @@ def mcrun(size, temp, n_0, n_max, move_n):
 
     return energy/n_max
 
-def e_t_graph(n_0, n_max, move_n, temp_steps):
+def e_t_graph(n_0, n_max, move_n, temp_steps, temp_range):
     '''Runs multiple temp simulations and then produces an energy-temperature graph'''
 
     grid_size = 16
-    temperatures = numpy.linspace(1, 4, temp_steps)
+    temperatures = numpy.linspace(temp_range[0], temp_range[1], temp_steps)
     energies = numpy.zeros(temp_steps)
 
-    for k in range(len(temperatures)):
-        energies[k] = mcrun(grid_size, temperatures[k], n_0, n_max, move_n)
-        print(k/100)
+    for k, temp in enumerate(temperatures):
+        energies[k] = mcrun(grid_size, temp, n_0, n_max, move_n)
+        print(k/temp_steps)
 
     #figure = plt.figure(figsize=(18, 10), dpi=80, facecolor='w', edgecolor='k')
 
@@ -130,12 +130,12 @@ N_MAX = 400
 MOVE_N = 300
 T_STEPS = 100
 
-testing = "y"
+testing = input("Type y for test and n for full")
 
 if testing == "n":
-    e_t_graph(N_0, N_MAX, MOVE_N, T_STEPS)
+    e_t_graph(N_0, N_MAX, MOVE_N, T_STEPS, (1, 4))
 elif testing == "y":
-    e_t_graph(100, 100, 50, 50)
+    e_t_graph(100, 100, 50, 50, (1, 4))
 
 
 #configplot()
