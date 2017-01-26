@@ -1,7 +1,7 @@
 '''
 First implementation of Ising model
 Start date: 24 January 2017
-Author: Daniel Karandikar
+Author: DKarandikar
 '''
 
 import numpy
@@ -91,6 +91,9 @@ def e_t_graph(n_0, n_max, move_n, temp_steps, temp_range):
     plt.show()
 
     print("done")
+
+def test():
+    e_t_graph(100, 100, 50, 50, (1, 4))
 
 def configplot():
     '''Plots multiple subplots'''

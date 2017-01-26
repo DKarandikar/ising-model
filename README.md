@@ -28,6 +28,11 @@ From command line in directory run:
 or 
 
         python setup.py test
+        
+Otherwise, install it and then in python type:
+
+        import ising
+        ising.test()
 
 Result should be a matplotlib graph of the form:
 
