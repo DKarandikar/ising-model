@@ -130,12 +130,12 @@ N_MAX = 400
 MOVE_N = 300
 T_STEPS = 100
 
-testing = input("Type y for test and n for full")
+#testing = input("Type y for test and n for full")
 
-if testing == "n":
-    e_t_graph(N_0, N_MAX, MOVE_N, T_STEPS, (1, 4))
-elif testing == "y":
-    e_t_graph(100, 100, 50, 50, (1, 4))
+#if testing == "n":
+#    e_t_graph(N_0, N_MAX, MOVE_N, T_STEPS, (1, 4))
+#elif testing == "y":
+#    e_t_graph(100, 100, 50, 50, (1, 4))
 
 
 #configplot()
