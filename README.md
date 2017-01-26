@@ -48,3 +48,18 @@ Where:
 - T_range is a tuple (a,b) where a is the initial temperature and b is the final
 
 Overall, the script should try to flip a spin (n_0 + n_max)* move_n * T_steps times per graph
+
+## Changelog
+
+### [0.1.0] - 25/01/2017
+
+- Migrated to a package format installed with pip or python install
+- Minimal changes to main functionality
+- Migrated test to a proper nosetests structure
+- Setup should have relevant dependencies 
+
+
+### [0.0.1] - 25/01/2017
+
+- Initial version using a .py file in main directory
+- Basic implementation established for only E-T graph
