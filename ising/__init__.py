@@ -3,27 +3,21 @@ First implementation of Ising model
 Start date: 24 January 2017
 Author: DKarandikar
 '''
+import time
 
 import numpy
-import time
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 
-def delta_e(lattice, site):
-    '''Calculates the new delta E for a given site'''
-    pos_x = site[0]
-    pos_y = site[1]
-    size_x = lattice.shape[0]
-    size_y = lattice.shape[1]
-    energy = 2 * lattice[pos_x, pos_y] * (lattice[(pos_x-1)%size_x, pos_y] \
-                                   + lattice[(pos_x+1)%size_x, pos_y] \
-                                   + lattice[pos_x, (pos_y-1)%size_y] \
-                                   + lattice[pos_x, (pos_y+1)%size_y])
-    return energy
+def mcsetup(grid_size):
+    '''Setups up the initial lattice and spins'''
+    lattice = 2 * numpy.random.randint(2, size=(grid_size, grid_size)) - 1
+    return lattice
 
 
-def mcmove(lattice, beta, move_n, exponentials):
+
+def mcmove(lattice, move_n, exponentials):
     '''Flip a spin if the energy change is beneficial'''
 
     for _ in range(move_n):
@@ -39,11 +33,18 @@ def mcmove(lattice, beta, move_n, exponentials):
 
     return lattice
 
+def delta_e(lattice, site):
+    '''Calculates the new delta E for a given site'''
+    pos_x = site[0]
+    pos_y = site[1]
+    size_x = lattice.shape[0]
+    size_y = lattice.shape[1]
+    energy = 2 * lattice[pos_x, pos_y] * (lattice[(pos_x-1)%size_x, pos_y] \
+                                   + lattice[(pos_x+1)%size_x, pos_y] \
+                                   + lattice[pos_x, (pos_y-1)%size_y] \
+                                   + lattice[pos_x, (pos_y+1)%size_y])
+    return energy
 
-def mcsetup(grid_size):
-    '''Setups up the initial lattice and spins'''
-    lattice = 2 * numpy.random.randint(2, size=(grid_size, grid_size)) - 1
-    return lattice
 
 def calc_energy(lattice, grid_size):
     '''Calculates the average energy of the system'''
@@ -59,31 +60,32 @@ def calc_energy(lattice, grid_size):
     return result/(4)
 
 def calc_magnet(lattice):
+    '''Sums over all spins to calculate magnetization'''
     magnet = numpy.sum(lattice)
     return magnet
 
 
-def mcrun(size, temp, n_0, n_max, move_n, grid_size):
+def mcrun(temp, n_0, n_max, move_n, grid_size):
     '''Runs an entire simulation for a given temperature and returns the energy average'''
-    lattice = mcsetup(size)
+    lattice = mcsetup(grid_size)
 
     exponentials = {4 : numpy.exp(-1*4*(1/temp)), 8 : numpy.exp(-1*8*(1/temp))}
 
     for _ in range(n_0):
-        lattice = mcmove(lattice, 1/temp, move_n, exponentials)
+        lattice = mcmove(lattice, move_n, exponentials)
 
     energy = 0
     magnet = 0
 
     for _ in range(n_max):
-        lattice = mcmove(lattice, 1/temp, move_n, exponentials)
+        lattice = mcmove(lattice, move_n, exponentials)
         energy += calc_energy(lattice, grid_size)
         magnet += calc_magnet(lattice)
 
     return (energy/n_max, magnet/n_max)
 
 def ising_graphs(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
-    '''Runs multiple temp simulations and then produces an energy-temperature graph'''
+    '''Runs multiple temp simulations and then produces relevant graphs'''
 
     grid_size = 16
     temperatures = numpy.linspace(temp_range[0], temp_range[1], temp_steps)
@@ -92,19 +94,19 @@ def ising_graphs(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
     magnetizations = numpy.zeros(temp_steps)
 
     for k, temp in enumerate(temperatures):
-        values = mcrun(grid_size, temp, n_0, n_max, move_n, grid_size)
+        values = mcrun(temp, n_0, n_max, move_n, grid_size)
         energies[k] = values[0]/(grid_size**2)
         magnetizations[k] = abs(values[1]/(grid_size**2))
         print(k/temp_steps)
 
     figure = plt.figure(figsize=(18, 10), dpi=80, facecolor='w', edgecolor='k')
 
-    subplot = figure.add_subplot(2, 1, 1)
+    dummy_sp = figure.add_subplot(1, 2, 1)
     plt.plot(temperatures, energies, 'o', color="#A60628", label=' Energy')
     plt.xlabel("Temperature ", fontsize=20)
     plt.ylabel("Energy ", fontsize=20)
 
-    subplot = figure.add_subplot(2, 1, 2)
+    dummy_sp = figure.add_subplot(1, 2, 2)
     plt.plot(temperatures, magnetizations, 'o', color="#A60628", label=' Magnetization')
     plt.xlabel("Temperature ", fontsize=20)
     plt.ylabel("Magnetization ", fontsize=20)
@@ -113,6 +115,59 @@ def ising_graphs(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
         plt.show()
 
     print("done")
+
+
+def gridplot(temp):
+    ''' Displays an animation of the 2d ising model at temperate temp, in units kb=1'''
+
+    grid_size = 100
+
+    exponentials = {4 : numpy.exp(-1*4*(1/temp)), 8 : numpy.exp(-1*8*(1/temp))}
+    exponentials2 = {4 : numpy.exp(-1*4*(1/(temp+5))), 8 : numpy.exp(-1*8*(1/(temp+5)))}
+
+    lattice = mcsetup(grid_size)
+    lattice2 = mcsetup(grid_size)
+
+    def data_gen():
+        '''Returns the lattice to the animation update'''
+        while True:
+            yield lattice, lattice2
+
+    def update(data):
+        ''' Updates the animation by flipping (potentially) 150 spins every tick '''
+        lattice, lattice2 = data
+
+        lattice = mcmove(lattice, 150, exponentials)
+        matrix1.set_data(lattice)
+
+        lattice2 = mcmove(lattice2, 150, exponentials2)
+        matrix2.set_data(lattice2)
+
+        return None
+
+    fig = plt.figure(figsize=(18, 10), dpi=80)
+    axis1 = plt.subplot(121)
+    axis2 = plt.subplot(122)
+
+    axis1.axis('off')
+    axis1.set_title("Ising model at T=" + str(temp))
+    axis2.axis('off')
+    axis2.set_title("Ising model at T=" + str(temp+5))
+
+    matrix1 = axis1.matshow(lattice)
+
+    #plt.colorbar(matrix1)
+
+    matrix2 = axis2.matshow(lattice2)
+
+    #plt.colorbar(matrix2)
+
+    dummy_ani = animation.FuncAnimation(fig, update, data_gen,
+                                        interval=50, save_count=50)
+
+    plt.show()
+
+
 
 def test(testing=False):
     '''Runs a quick test to see that e_t is working'''
@@ -132,29 +187,3 @@ def time_test():
 def standard():
     '''Runs a standard density simulation'''
     ising_graphs(400, 400, 300, 100, (1, 4))
-
-
-
-
-def gridplot(temp):
-    ''' Displays an animation of the 2d ising model at temperate temp, in units kb=1'''
-
-    def update(i, lattice, beta, exponentials):
-        lattice = mcmove(lattice, beta, 150, exponentials)
-        mat.set_data(lattice)
-        return lattice
-
-    grid_size = 100
-
-    exponentials = {4 : numpy.exp(-1*4*(1/temp)), 8 : numpy.exp(-1*8*(1/temp))}
-    beta = 1/temp
-
-    lattice = mcsetup(grid_size)
-
-    fig, axis = plt.subplots()
-    mat = axis.matshow(lattice)
-    plt.colorbar(mat)
-    ani = animation.FuncAnimation(fig, update, fargs=(lattice, beta, exponentials),
-                                  interval=50, save_count=50)
-
-    plt.show()
