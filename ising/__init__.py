@@ -88,8 +88,8 @@ def ising_graphs(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
     '''Runs multiple temp simulations and then produces relevant graphs'''
 
     grid_size = 16
-    temperatures = numpy.linspace(temp_range[0], temp_range[1], temp_steps)
 
+    temperatures = numpy.linspace(temp_range[0], temp_range[1], temp_steps)
     energies = numpy.zeros(temp_steps)
     magnetizations = numpy.zeros(temp_steps)
 
@@ -103,13 +103,13 @@ def ising_graphs(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
 
     dummy_sp = figure.add_subplot(1, 2, 1)
     plt.plot(temperatures, energies, 'o', color="#A60628", label=' Energy')
-    plt.xlabel("Temperature ", fontsize=20)
-    plt.ylabel("Energy ", fontsize=20)
+    plt.xlabel(r'$Temperature [J/k_{B}]$', fontsize=20)
+    plt.ylabel(r'$Energy [J]$', fontsize=20)
 
     dummy_sp = figure.add_subplot(1, 2, 2)
     plt.plot(temperatures, magnetizations, 'o', color="#A60628", label=' Magnetization')
-    plt.xlabel("Temperature ", fontsize=20)
-    plt.ylabel("Magnetization ", fontsize=20)
+    plt.xlabel(r'$Temperature [J/k_{B}]$', fontsize=20)
+    plt.ylabel(r'$Magnetization [\mu]$', fontsize=20)
 
     if not testing:
         plt.show()
@@ -154,13 +154,8 @@ def gridplot(temp):
     axis2.axis('off')
     axis2.set_title("Ising model at T=" + str(temp+5))
 
-    matrix1 = axis1.matshow(lattice)
-
-    #plt.colorbar(matrix1)
-
-    matrix2 = axis2.matshow(lattice2)
-
-    #plt.colorbar(matrix2)
+    matrix1 = axis1.matshow(lattice, cmap='spring')
+    matrix2 = axis2.matshow(lattice2, cmap='spring')
 
     dummy_ani = animation.FuncAnimation(fig, update, data_gen,
                                         interval=50, save_count=50)
