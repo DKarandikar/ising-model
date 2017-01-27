@@ -42,7 +42,7 @@ Result should be a matplotlib graph of the form:
 
 To use more generally import ising, then use:
 
-        e_t_graph(n_0, n_max, move_n, T_steps, T_range)
+        ising_graphs(n_0, n_max, move_n, T_steps, T_range)
 
 Where:
 

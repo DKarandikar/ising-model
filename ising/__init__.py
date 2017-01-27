@@ -81,7 +81,7 @@ def mcrun(size, temp, n_0, n_max, move_n, grid_size):
 
     return (energy/n_max, magnet/n_max)
 
-def e_t_graph(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
+def ising_graphs(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
     '''Runs multiple temp simulations and then produces an energy-temperature graph'''
 
     grid_size = 16
@@ -115,7 +115,7 @@ def e_t_graph(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
 
 def test(testing=False):
     '''Runs a quick test to see that e_t is working'''
-    e_t_graph(100, 100, 50, 50, (1, 4), testing)
+    ising_graphs(100, 100, 50, 50, (1, 4), testing)
 
 def time_test():
     '''Performs multiple tests and averages the time'''
@@ -130,6 +130,6 @@ def time_test():
 
 def standard():
     '''Runs a standard density simulation'''
-    e_t_graph(400, 400, 300, 100, (1, 4))
+    ising_graphs(400, 400, 300, 100, (1, 4))
 
 
