@@ -56,6 +56,10 @@ Overall, the script should try to flip a spin (n_0 + n_max)* move_n * T_steps ti
 
 ## Changelog
 
+### [0.2.0] - 27/01/2017
+
+- Added method to generate animation, called gridplot
+
 ### [0.1.0] - 25/01/2017
 
 - Migrated to a package format installed with pip or python install

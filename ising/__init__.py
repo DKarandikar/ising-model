@@ -7,6 +7,7 @@ Author: DKarandikar
 import numpy
 import time
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 
 def delta_e(lattice, site):
@@ -133,3 +134,27 @@ def standard():
     ising_graphs(400, 400, 300, 100, (1, 4))
 
 
+
+
+def gridplot(temp):
+    ''' Displays an animation of the 2d ising model at temperate temp, in units kb=1'''
+
+    def update(i, lattice, beta, exponentials):
+        lattice = mcmove(lattice, beta, 150, exponentials)
+        mat.set_data(lattice)
+        return lattice
+
+    grid_size = 100
+
+    exponentials = {4 : numpy.exp(-1*4*(1/temp)), 8 : numpy.exp(-1*8*(1/temp))}
+    beta = 1/temp
+
+    lattice = mcsetup(grid_size)
+
+    fig, axis = plt.subplots()
+    mat = axis.matshow(lattice)
+    plt.colorbar(mat)
+    ani = animation.FuncAnimation(fig, update, fargs=(lattice, beta, exponentials),
+                                  interval=50, save_count=50)
+
+    plt.show()
