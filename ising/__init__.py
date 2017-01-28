@@ -9,6 +9,8 @@ import numpy
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
+#import move_cy
+
 
 def mcsetup(grid_size):
     '''Setups up the initial lattice and spins'''
@@ -17,7 +19,7 @@ def mcsetup(grid_size):
 
 
 
-def mcmove(lattice, move_n, exponentials):
+def mcmove(lattice, move_n, exp_low, exp_high):
     '''Flip a spin if the energy change is beneficial'''
 
     for _ in range(move_n):
@@ -28,7 +30,9 @@ def mcmove(lattice, move_n, exponentials):
 
         if new_e <= 0:
             lattice[pos_x, pos_y] *= -1
-        elif exponentials[new_e] > numpy.random.rand():
+        elif new_e == 4 and exp_low > numpy.random.rand():
+            lattice[pos_x, pos_y] *= -1
+        elif new_e == 8 and exp_high > numpy.random.rand():
             lattice[pos_x, pos_y] *= -1
 
     return lattice
@@ -69,16 +73,17 @@ def mcrun(temp, n_0, n_max, move_n, grid_size):
     '''Runs an entire simulation for a given temperature and returns the energy average'''
     lattice = mcsetup(grid_size)
 
-    exponentials = {4 : numpy.exp(-1*4*(1/temp)), 8 : numpy.exp(-1*8*(1/temp))}
+    exponential_low = numpy.exp(-1*4*(1/temp))
+    exponential_high = numpy.exp(-1*8*(1/temp))
 
     for _ in range(n_0):
-        lattice = mcmove(lattice, move_n, exponentials)
+        lattice = mcmove(lattice, move_n, exponential_low, exponential_high)
 
     energy = 0
     magnet = 0
 
     for _ in range(n_max):
-        lattice = mcmove(lattice, move_n, exponentials)
+        lattice = mcmove(lattice, move_n, exponential_low, exponential_high)
         energy += calc_energy(lattice, grid_size)
         magnet += calc_magnet(lattice)
 
@@ -122,8 +127,10 @@ def gridplot(temp):
 
     grid_size = 100
 
-    exponentials = {4 : numpy.exp(-1*4*(1/temp)), 8 : numpy.exp(-1*8*(1/temp))}
-    exponentials2 = {4 : numpy.exp(-1*4*(1/(temp+5))), 8 : numpy.exp(-1*8*(1/(temp+5)))}
+    exponential_low = numpy.exp(-1*4*(1/temp))
+    exponential_high = numpy.exp(-1*8*(1/temp))
+    exponential_low2 = numpy.exp(-1*4*(1/(temp+5)))
+    exponential_high2 = numpy.exp(-1*8*(1/(temp+5)))
 
     lattice = mcsetup(grid_size)
     lattice2 = mcsetup(grid_size)
@@ -137,10 +144,10 @@ def gridplot(temp):
         ''' Updates the animation by flipping (potentially) 150 spins every tick '''
         lattice, lattice2 = data
 
-        lattice = mcmove(lattice, 150, exponentials)
+        lattice = mcmove(lattice, 150, exponential_low, exponential_high)
         matrix1.set_data(lattice)
 
-        lattice2 = mcmove(lattice2, 150, exponentials2)
+        lattice2 = mcmove(lattice2, 150, exponential_low2, exponential_high2)
         matrix2.set_data(lattice2)
 
         return None
