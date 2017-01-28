@@ -57,6 +57,11 @@ Overall, the script should try to flip a spin (n_0 + n_max)* move_n * T_steps ti
 
 ## Changelog
 
+### [0.43.0] - 28/01/2017
+
+- Implemented some cython that is temporarily working 
+- Mcmove method is approximately 10x faster
+
 ### [0.3.0] - 27/01/2017
 
 - Gridplot now generates two plots and animates them both

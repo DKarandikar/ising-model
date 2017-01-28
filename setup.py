@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='ising',
-      version='0.3.0',
+      version='0.4.0',
       description='Basic 2d Ising model',
       url='https://github.com/DKarandikar/ising-model',
       author='Daniel Karandikar',
