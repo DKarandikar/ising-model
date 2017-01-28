@@ -1245,6 +1245,7 @@ static const char __pyx_k_lattice[] = "lattice";
 static const char __pyx_k_move_cy[] = "move_cy";
 static const char __pyx_k_exp_high[] = "exp_high";
 static const char __pyx_k_ValueError[] = "ValueError";
+static const char __pyx_k_rand_float[] = "rand_float";
 static const char __pyx_k_RuntimeError[] = "RuntimeError";
 static const char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
 static const char __pyx_k_unknown_dtype_code_in_numpy_pxd[] = "unknown dtype code in numpy.pxd (%d)";
@@ -1275,6 +1276,7 @@ static PyObject *__pyx_n_s_numpy;
 static PyObject *__pyx_n_s_output;
 static PyObject *__pyx_n_s_pos_x;
 static PyObject *__pyx_n_s_pos_y;
+static PyObject *__pyx_n_s_rand_float;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_size_x;
 static PyObject *__pyx_n_s_size_y;
@@ -1391,6 +1393,7 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
   PyArrayObject *__pyx_v_output = 0;
   int __pyx_v_size_x;
   int __pyx_v_size_y;
+  double __pyx_v_rand_float;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_lattice;
   __Pyx_Buffer __pyx_pybuffer_lattice;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_output;
@@ -1446,7 +1449,7 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
  *     cdef numpy.ndarray[int, ndim=2, mode='c'] output = lattice
  *     cdef int size_x = lattice.shape[0]             # <<<<<<<<<<<<<<
  *     cdef int size_y = lattice.shape[1]
- * 
+ *     cdef double rand_float
  */
   __pyx_v_size_x = (__pyx_v_lattice->dimensions[0]);
 
@@ -1454,64 +1457,82 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
  *     cdef numpy.ndarray[int, ndim=2, mode='c'] output = lattice
  *     cdef int size_x = lattice.shape[0]
  *     cdef int size_y = lattice.shape[1]             # <<<<<<<<<<<<<<
+ *     cdef double rand_float
  * 
- *     for _ in range(move_n):
  */
   __pyx_v_size_y = (__pyx_v_lattice->dimensions[1]);
 
-  /* "move_cy.pyx":22
- *     cdef int size_y = lattice.shape[1]
+  /* "move_cy.pyx":23
+ *     cdef double rand_float
  * 
  *     for _ in range(move_n):             # <<<<<<<<<<<<<<
  *         #pos_x = numpy.random.randint(0, lattice.shape[0])
- *         pos_x = int(rand()/(RAND_MAX*size_x))
+ *         pos_x = int(rand() % size_x)
  */
   __pyx_t_1 = __pyx_v_move_n;
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v__ = __pyx_t_2;
 
-    /* "move_cy.pyx":24
+    /* "move_cy.pyx":25
  *     for _ in range(move_n):
  *         #pos_x = numpy.random.randint(0, lattice.shape[0])
- *         pos_x = int(rand()/(RAND_MAX*size_x))             # <<<<<<<<<<<<<<
+ *         pos_x = int(rand() % size_x)             # <<<<<<<<<<<<<<
  *         #pos_y = numpy.random.randint(0, lattice.shape[1])
- *         pos_y = int(rand()/(RAND_MAX*size_y))
+ *         pos_y = int(rand() % size_y)
  */
-    __pyx_v_pos_x = (rand() / (RAND_MAX * __pyx_v_size_x));
+    __pyx_v_pos_x = (rand() % __pyx_v_size_x);
 
-    /* "move_cy.pyx":26
- *         pos_x = int(rand()/(RAND_MAX*size_x))
+    /* "move_cy.pyx":27
+ *         pos_x = int(rand() % size_x)
  *         #pos_y = numpy.random.randint(0, lattice.shape[1])
- *         pos_y = int(rand()/(RAND_MAX*size_y))             # <<<<<<<<<<<<<<
+ *         pos_y = int(rand() % size_y)             # <<<<<<<<<<<<<<
  * 
- *         new_e = delta_e(lattice, pos_x, pos_y)
+ *         new_e = delta_e(output, pos_x, pos_y)
  */
-    __pyx_v_pos_y = (rand() / (RAND_MAX * __pyx_v_size_y));
+    __pyx_v_pos_y = (rand() % __pyx_v_size_y);
 
-    /* "move_cy.pyx":28
- *         pos_y = int(rand()/(RAND_MAX*size_y))
+    /* "move_cy.pyx":29
+ *         pos_y = int(rand() % size_y)
  * 
- *         new_e = delta_e(lattice, pos_x, pos_y)             # <<<<<<<<<<<<<<
+ *         new_e = delta_e(output, pos_x, pos_y)             # <<<<<<<<<<<<<<
+ * 
+ *         rand_float = rand()
+ */
+    __pyx_v_new_e = __pyx_f_7move_cy_delta_e(((PyArrayObject *)__pyx_v_output), __pyx_v_pos_x, __pyx_v_pos_y);
+
+    /* "move_cy.pyx":31
+ *         new_e = delta_e(output, pos_x, pos_y)
+ * 
+ *         rand_float = rand()             # <<<<<<<<<<<<<<
+ *         rand_float /= RAND_MAX
+ * 
+ */
+    __pyx_v_rand_float = rand();
+
+    /* "move_cy.pyx":32
+ * 
+ *         rand_float = rand()
+ *         rand_float /= RAND_MAX             # <<<<<<<<<<<<<<
  * 
  *         if new_e <= 0:
  */
-    __pyx_v_new_e = __pyx_f_7move_cy_delta_e(((PyArrayObject *)__pyx_v_lattice), __pyx_v_pos_x, __pyx_v_pos_y);
+    __pyx_v_rand_float = (__pyx_v_rand_float / RAND_MAX);
 
-    /* "move_cy.pyx":30
- *         new_e = delta_e(lattice, pos_x, pos_y)
+    /* "move_cy.pyx":34
+ *         rand_float /= RAND_MAX
  * 
  *         if new_e <= 0:             # <<<<<<<<<<<<<<
  *             output[pos_x, pos_y] *= -1
- *         elif new_e == 4 and exp_low > rand():
+ *         elif new_e == 4 and exp_low > rand_float:
  */
     __pyx_t_3 = ((__pyx_v_new_e <= 0) != 0);
     if (__pyx_t_3) {
 
-      /* "move_cy.pyx":31
+      /* "move_cy.pyx":35
  * 
  *         if new_e <= 0:
  *             output[pos_x, pos_y] *= -1             # <<<<<<<<<<<<<<
- *         elif new_e == 4 and exp_low > rand():
+ *         elif new_e == 4 and exp_low > rand_float:
  *             output[pos_x, pos_y] *= -1
  */
       __pyx_t_4 = __pyx_v_pos_x;
@@ -1527,26 +1548,26 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
       } else if (unlikely(__pyx_t_5 >= __pyx_pybuffernd_output.diminfo[1].shape)) __pyx_t_6 = 1;
       if (unlikely(__pyx_t_6 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_6);
-        __PYX_ERR(0, 31, __pyx_L1_error)
+        __PYX_ERR(0, 35, __pyx_L1_error)
       }
       *__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_output.rcbuffer->pybuffer.buf, __pyx_t_4, __pyx_pybuffernd_output.diminfo[0].strides, __pyx_t_5, __pyx_pybuffernd_output.diminfo[1].strides) *= -1;
 
-      /* "move_cy.pyx":30
- *         new_e = delta_e(lattice, pos_x, pos_y)
+      /* "move_cy.pyx":34
+ *         rand_float /= RAND_MAX
  * 
  *         if new_e <= 0:             # <<<<<<<<<<<<<<
  *             output[pos_x, pos_y] *= -1
- *         elif new_e == 4 and exp_low > rand():
+ *         elif new_e == 4 and exp_low > rand_float:
  */
       goto __pyx_L5;
     }
 
-    /* "move_cy.pyx":32
+    /* "move_cy.pyx":36
  *         if new_e <= 0:
  *             output[pos_x, pos_y] *= -1
- *         elif new_e == 4 and exp_low > rand():             # <<<<<<<<<<<<<<
+ *         elif new_e == 4 and exp_low > rand_float:             # <<<<<<<<<<<<<<
  *             output[pos_x, pos_y] *= -1
- *         elif new_e == 8 and exp_high > rand():
+ *         elif new_e == 8 and exp_high > rand_float:
  */
     __pyx_t_7 = ((__pyx_v_new_e == 4) != 0);
     if (__pyx_t_7) {
@@ -1554,16 +1575,16 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
       __pyx_t_3 = __pyx_t_7;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_7 = ((__pyx_v_exp_low > rand()) != 0);
+    __pyx_t_7 = ((__pyx_v_exp_low > __pyx_v_rand_float) != 0);
     __pyx_t_3 = __pyx_t_7;
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_3) {
 
-      /* "move_cy.pyx":33
+      /* "move_cy.pyx":37
  *             output[pos_x, pos_y] *= -1
- *         elif new_e == 4 and exp_low > rand():
+ *         elif new_e == 4 and exp_low > rand_float:
  *             output[pos_x, pos_y] *= -1             # <<<<<<<<<<<<<<
- *         elif new_e == 8 and exp_high > rand():
+ *         elif new_e == 8 and exp_high > rand_float:
  *             output[pos_x, pos_y] *= -1
  */
       __pyx_t_8 = __pyx_v_pos_x;
@@ -1579,24 +1600,24 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
       } else if (unlikely(__pyx_t_9 >= __pyx_pybuffernd_output.diminfo[1].shape)) __pyx_t_6 = 1;
       if (unlikely(__pyx_t_6 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_6);
-        __PYX_ERR(0, 33, __pyx_L1_error)
+        __PYX_ERR(0, 37, __pyx_L1_error)
       }
       *__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_output.rcbuffer->pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_output.diminfo[0].strides, __pyx_t_9, __pyx_pybuffernd_output.diminfo[1].strides) *= -1;
 
-      /* "move_cy.pyx":32
+      /* "move_cy.pyx":36
  *         if new_e <= 0:
  *             output[pos_x, pos_y] *= -1
- *         elif new_e == 4 and exp_low > rand():             # <<<<<<<<<<<<<<
+ *         elif new_e == 4 and exp_low > rand_float:             # <<<<<<<<<<<<<<
  *             output[pos_x, pos_y] *= -1
- *         elif new_e == 8 and exp_high > rand():
+ *         elif new_e == 8 and exp_high > rand_float:
  */
       goto __pyx_L5;
     }
 
-    /* "move_cy.pyx":34
- *         elif new_e == 4 and exp_low > rand():
+    /* "move_cy.pyx":38
+ *         elif new_e == 4 and exp_low > rand_float:
  *             output[pos_x, pos_y] *= -1
- *         elif new_e == 8 and exp_high > rand():             # <<<<<<<<<<<<<<
+ *         elif new_e == 8 and exp_high > rand_float:             # <<<<<<<<<<<<<<
  *             output[pos_x, pos_y] *= -1
  * 
  */
@@ -1606,17 +1627,17 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
       __pyx_t_3 = __pyx_t_7;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_7 = ((__pyx_v_exp_high > rand()) != 0);
+    __pyx_t_7 = ((__pyx_v_exp_high > __pyx_v_rand_float) != 0);
     __pyx_t_3 = __pyx_t_7;
     __pyx_L8_bool_binop_done:;
     if (__pyx_t_3) {
 
-      /* "move_cy.pyx":35
+      /* "move_cy.pyx":39
  *             output[pos_x, pos_y] *= -1
- *         elif new_e == 8 and exp_high > rand():
+ *         elif new_e == 8 and exp_high > rand_float:
  *             output[pos_x, pos_y] *= -1             # <<<<<<<<<<<<<<
  * 
- *     return lattice
+ *     return output
  */
       __pyx_t_10 = __pyx_v_pos_x;
       __pyx_t_11 = __pyx_v_pos_y;
@@ -1631,14 +1652,14 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
       } else if (unlikely(__pyx_t_11 >= __pyx_pybuffernd_output.diminfo[1].shape)) __pyx_t_6 = 1;
       if (unlikely(__pyx_t_6 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_6);
-        __PYX_ERR(0, 35, __pyx_L1_error)
+        __PYX_ERR(0, 39, __pyx_L1_error)
       }
       *__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_output.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_output.diminfo[0].strides, __pyx_t_11, __pyx_pybuffernd_output.diminfo[1].strides) *= -1;
 
-      /* "move_cy.pyx":34
- *         elif new_e == 4 and exp_low > rand():
+      /* "move_cy.pyx":38
+ *         elif new_e == 4 and exp_low > rand_float:
  *             output[pos_x, pos_y] *= -1
- *         elif new_e == 8 and exp_high > rand():             # <<<<<<<<<<<<<<
+ *         elif new_e == 8 and exp_high > rand_float:             # <<<<<<<<<<<<<<
  *             output[pos_x, pos_y] *= -1
  * 
  */
@@ -1646,16 +1667,16 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
     __pyx_L5:;
   }
 
-  /* "move_cy.pyx":37
+  /* "move_cy.pyx":41
  *             output[pos_x, pos_y] *= -1
  * 
- *     return lattice             # <<<<<<<<<<<<<<
+ *     return output             # <<<<<<<<<<<<<<
  * 
  * cdef int delta_e(numpy.ndarray[int, ndim=2, mode='c'] lattice, int pos_x, int pos_y):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF(((PyObject *)__pyx_v_lattice));
-  __pyx_r = ((PyObject *)__pyx_v_lattice);
+  __Pyx_INCREF(((PyObject *)__pyx_v_output));
+  __pyx_r = ((PyObject *)__pyx_v_output);
   goto __pyx_L0;
 
   /* "move_cy.pyx":12
@@ -1688,8 +1709,8 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
   return __pyx_r;
 }
 
-/* "move_cy.pyx":39
- *     return lattice
+/* "move_cy.pyx":43
+ *     return output
  * 
  * cdef int delta_e(numpy.ndarray[int, ndim=2, mode='c'] lattice, int pos_x, int pos_y):             # <<<<<<<<<<<<<<
  *     '''Calculates the new delta E for a given site'''
@@ -1726,11 +1747,11 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
   __pyx_pybuffernd_lattice.rcbuffer = &__pyx_pybuffer_lattice;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_lattice.rcbuffer->pybuffer, (PyObject*)__pyx_v_lattice, &__Pyx_TypeInfo_int, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 39, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_lattice.rcbuffer->pybuffer, (PyObject*)__pyx_v_lattice, &__Pyx_TypeInfo_int, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 43, __pyx_L1_error)
   }
   __pyx_pybuffernd_lattice.diminfo[0].strides = __pyx_pybuffernd_lattice.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_lattice.diminfo[0].shape = __pyx_pybuffernd_lattice.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_lattice.diminfo[1].strides = __pyx_pybuffernd_lattice.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_lattice.diminfo[1].shape = __pyx_pybuffernd_lattice.rcbuffer->pybuffer.shape[1];
 
-  /* "move_cy.pyx":41
+  /* "move_cy.pyx":45
  * cdef int delta_e(numpy.ndarray[int, ndim=2, mode='c'] lattice, int pos_x, int pos_y):
  *     '''Calculates the new delta E for a given site'''
  *     cdef int size_x = lattice.shape[0]             # <<<<<<<<<<<<<<
@@ -1739,7 +1760,7 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
  */
   __pyx_v_size_x = (__pyx_v_lattice->dimensions[0]);
 
-  /* "move_cy.pyx":42
+  /* "move_cy.pyx":46
  *     '''Calculates the new delta E for a given site'''
  *     cdef int size_x = lattice.shape[0]
  *     cdef int size_y = lattice.shape[1]             # <<<<<<<<<<<<<<
@@ -1748,7 +1769,7 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
  */
   __pyx_v_size_y = (__pyx_v_lattice->dimensions[1]);
 
-  /* "move_cy.pyx":43
+  /* "move_cy.pyx":47
  *     cdef int size_x = lattice.shape[0]
  *     cdef int size_y = lattice.shape[1]
  *     cdef int energy = 2 * lattice[pos_x, pos_y] * (lattice[(pos_x-1)%size_x, pos_y] \             # <<<<<<<<<<<<<<
@@ -1768,12 +1789,12 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
   } else if (unlikely(__pyx_t_2 >= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_3 = 1;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 43, __pyx_L1_error)
+    __PYX_ERR(0, 47, __pyx_L1_error)
   }
   __pyx_t_4 = (__pyx_v_pos_x - 1);
   if (unlikely(__pyx_v_size_x == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "integer division or modulo by zero");
-    __PYX_ERR(0, 43, __pyx_L1_error)
+    __PYX_ERR(0, 47, __pyx_L1_error)
   }
   __pyx_t_5 = __Pyx_mod_long(__pyx_t_4, __pyx_v_size_x);
   __pyx_t_6 = __pyx_v_pos_y;
@@ -1788,10 +1809,10 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
   } else if (unlikely(__pyx_t_6 >= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_3 = 1;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 43, __pyx_L1_error)
+    __PYX_ERR(0, 47, __pyx_L1_error)
   }
 
-  /* "move_cy.pyx":44
+  /* "move_cy.pyx":48
  *     cdef int size_y = lattice.shape[1]
  *     cdef int energy = 2 * lattice[pos_x, pos_y] * (lattice[(pos_x-1)%size_x, pos_y] \
  *                                    + lattice[(pos_x+1)%size_x, pos_y] \             # <<<<<<<<<<<<<<
@@ -1801,7 +1822,7 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
   __pyx_t_7 = (__pyx_v_pos_x + 1);
   if (unlikely(__pyx_v_size_x == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "integer division or modulo by zero");
-    __PYX_ERR(0, 44, __pyx_L1_error)
+    __PYX_ERR(0, 48, __pyx_L1_error)
   }
   __pyx_t_8 = __Pyx_mod_long(__pyx_t_7, __pyx_v_size_x);
   __pyx_t_9 = __pyx_v_pos_y;
@@ -1816,10 +1837,10 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
   } else if (unlikely(__pyx_t_9 >= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_3 = 1;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 44, __pyx_L1_error)
+    __PYX_ERR(0, 48, __pyx_L1_error)
   }
 
-  /* "move_cy.pyx":45
+  /* "move_cy.pyx":49
  *     cdef int energy = 2 * lattice[pos_x, pos_y] * (lattice[(pos_x-1)%size_x, pos_y] \
  *                                    + lattice[(pos_x+1)%size_x, pos_y] \
  *                                    + lattice[pos_x, (pos_y-1)%size_y] \             # <<<<<<<<<<<<<<
@@ -1829,7 +1850,7 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
   __pyx_t_10 = (__pyx_v_pos_y - 1);
   if (unlikely(__pyx_v_size_y == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "integer division or modulo by zero");
-    __PYX_ERR(0, 45, __pyx_L1_error)
+    __PYX_ERR(0, 49, __pyx_L1_error)
   }
   __pyx_t_11 = __pyx_v_pos_x;
   __pyx_t_12 = __Pyx_mod_long(__pyx_t_10, __pyx_v_size_y);
@@ -1844,10 +1865,10 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
   } else if (unlikely(__pyx_t_12 >= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_3 = 1;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 45, __pyx_L1_error)
+    __PYX_ERR(0, 49, __pyx_L1_error)
   }
 
-  /* "move_cy.pyx":46
+  /* "move_cy.pyx":50
  *                                    + lattice[(pos_x+1)%size_x, pos_y] \
  *                                    + lattice[pos_x, (pos_y-1)%size_y] \
  *                                    + lattice[pos_x, (pos_y+1)%size_y])             # <<<<<<<<<<<<<<
@@ -1856,7 +1877,7 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
   __pyx_t_13 = (__pyx_v_pos_y + 1);
   if (unlikely(__pyx_v_size_y == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "integer division or modulo by zero");
-    __PYX_ERR(0, 46, __pyx_L1_error)
+    __PYX_ERR(0, 50, __pyx_L1_error)
   }
   __pyx_t_14 = __pyx_v_pos_x;
   __pyx_t_15 = __Pyx_mod_long(__pyx_t_13, __pyx_v_size_y);
@@ -1871,10 +1892,10 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
   } else if (unlikely(__pyx_t_15 >= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_3 = 1;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 46, __pyx_L1_error)
+    __PYX_ERR(0, 50, __pyx_L1_error)
   }
 
-  /* "move_cy.pyx":43
+  /* "move_cy.pyx":47
  *     cdef int size_x = lattice.shape[0]
  *     cdef int size_y = lattice.shape[1]
  *     cdef int energy = 2 * lattice[pos_x, pos_y] * (lattice[(pos_x-1)%size_x, pos_y] \             # <<<<<<<<<<<<<<
@@ -1883,7 +1904,7 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
  */
   __pyx_v_energy = ((2 * (*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_2, __pyx_pybuffernd_lattice.diminfo[1].strides))) * ((((*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer->pybuffer.buf, __pyx_t_5, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_6, __pyx_pybuffernd_lattice.diminfo[1].strides)) + (*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer->pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_9, __pyx_pybuffernd_lattice.diminfo[1].strides))) + (*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer->pybuffer.buf, __pyx_t_11, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_12, __pyx_pybuffernd_lattice.diminfo[1].strides))) + (*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_15, __pyx_pybuffernd_lattice.diminfo[1].strides))));
 
-  /* "move_cy.pyx":47
+  /* "move_cy.pyx":51
  *                                    + lattice[pos_x, (pos_y-1)%size_y] \
  *                                    + lattice[pos_x, (pos_y+1)%size_y])
  *     return energy             # <<<<<<<<<<<<<<
@@ -1891,8 +1912,8 @@ static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_
   __pyx_r = __pyx_v_energy;
   goto __pyx_L0;
 
-  /* "move_cy.pyx":39
- *     return lattice
+  /* "move_cy.pyx":43
+ *     return output
  * 
  * cdef int delta_e(numpy.ndarray[int, ndim=2, mode='c'] lattice, int pos_x, int pos_y):             # <<<<<<<<<<<<<<
  *     '''Calculates the new delta E for a given site'''
@@ -4084,6 +4105,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_output, __pyx_k_output, sizeof(__pyx_k_output), 0, 0, 1, 1},
   {&__pyx_n_s_pos_x, __pyx_k_pos_x, sizeof(__pyx_k_pos_x), 0, 0, 1, 1},
   {&__pyx_n_s_pos_y, __pyx_k_pos_y, sizeof(__pyx_k_pos_y), 0, 0, 1, 1},
+  {&__pyx_n_s_rand_float, __pyx_k_rand_float, sizeof(__pyx_k_rand_float), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_size_x, __pyx_k_size_x, sizeof(__pyx_k_size_x), 0, 0, 1, 1},
   {&__pyx_n_s_size_y, __pyx_k_size_y, sizeof(__pyx_k_size_y), 0, 0, 1, 1},
@@ -4092,7 +4114,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 23, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(1, 218, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(1, 799, __pyx_L1_error)
   return 0;
@@ -4177,10 +4199,10 @@ static int __Pyx_InitCachedConstants(void) {
  *     '''Flip a spin if the energy change is beneficial'''
  *     cdef int pos_x
  */
-  __pyx_tuple__8 = PyTuple_Pack(11, __pyx_n_s_lattice, __pyx_n_s_move_n, __pyx_n_s_exp_low, __pyx_n_s_exp_high, __pyx_n_s_pos_x, __pyx_n_s_pos_y, __pyx_n_s_new_e, __pyx_n_s__7, __pyx_n_s_output, __pyx_n_s_size_x, __pyx_n_s_size_y); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(12, __pyx_n_s_lattice, __pyx_n_s_move_n, __pyx_n_s_exp_low, __pyx_n_s_exp_high, __pyx_n_s_pos_x, __pyx_n_s_pos_y, __pyx_n_s_new_e, __pyx_n_s__7, __pyx_n_s_output, __pyx_n_s_size_x, __pyx_n_s_size_y, __pyx_n_s_rand_float); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(4, 0, 11, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_C_Users_danie_OneDrive_Programmi, __pyx_n_s_mcmove, 12, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(4, 0, 12, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_C_Users_danie_OneDrive_Programmi, __pyx_n_s_mcmove, 12, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;

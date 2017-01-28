@@ -9,7 +9,7 @@ import numpy
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-#import move_cy
+import move_cy
 
 
 def mcsetup(grid_size):
@@ -77,13 +77,13 @@ def mcrun(temp, n_0, n_max, move_n, grid_size):
     exponential_high = numpy.exp(-1*8*(1/temp))
 
     for _ in range(n_0):
-        lattice = mcmove(lattice, move_n, exponential_low, exponential_high)
+        lattice = move_cy.mcmove(lattice, move_n, exponential_low, exponential_high)
 
     energy = 0
     magnet = 0
 
     for _ in range(n_max):
-        lattice = mcmove(lattice, move_n, exponential_low, exponential_high)
+        lattice = move_cy.mcmove(lattice, move_n, exponential_low, exponential_high)
         energy += calc_energy(lattice, grid_size)
         magnet += calc_magnet(lattice)
 
