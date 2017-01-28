@@ -9,7 +9,7 @@ import numpy
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-import move_cy
+from ising.cython2 import move_cy
 
 
 def mcsetup(grid_size):
