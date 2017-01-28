@@ -9,6 +9,23 @@ from libc.stdlib cimport rand, RAND_MAX
 
 @cython.cdivision(True) 
 
+def calc_energy(numpy.ndarray[int, ndim=2, mode='c'] lattice, int grid_size):
+    '''Calculates the average energy of the system'''
+    cdef int result = 0
+    cdef int i, j, site_e
+    cdef int size_x = lattice.shape[0]
+    cdef int size_y = lattice.shape[1]
+    
+    for i in range(size_x):
+        for j in range(size_y):
+            site_e = lattice[i, j] * -1  * (lattice[(i-1)%grid_size, j] \
+                                   + lattice[(i+1)%grid_size, j] \
+                                   + lattice[i, (j-1)%grid_size] \
+                                   + lattice[i, (j+1)%grid_size])
+            result += site_e
+    cdef double p = result/4
+    return p
+
 def mcmove(numpy.ndarray[int, ndim=2, mode='c'] lattice, int move_n, float exp_low, float exp_high):
     '''Flip a spin if the energy change is beneficial'''
     cdef int pos_x
@@ -49,3 +66,5 @@ cdef int delta_e(numpy.ndarray[int, ndim=2, mode='c'] lattice, int pos_x, int po
                                    + lattice[pos_x, (pos_y-1)%size_y] \
                                    + lattice[pos_x, (pos_y+1)%size_y])
     return energy
+
+

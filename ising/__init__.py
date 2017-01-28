@@ -52,7 +52,7 @@ def mcrun(temp, n_0, n_max, move_n, grid_size):
 
     for _ in range(n_max):
         lattice = move_cy.mcmove(lattice, move_n, exponential_low, exponential_high)
-        energy += calc_energy(lattice, grid_size)
+        energy += move_cy.calc_energy(lattice, grid_size)
         magnet += calc_magnet(lattice)
 
     return (energy/n_max, magnet/n_max)

@@ -387,12 +387,12 @@ body.cython { font-family: courier; font-size: 12; }
 <pre class="cython line score-0">&#xA0;<span class="">09</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">10</span>: <span class="nd">@cython</span><span class="o">.</span><span class="n">cdivision</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">11</span>: </pre>
-<pre class="cython line score-105" onclick='toggleDiv(this)'>+<span class="">12</span>: <span class="k">def</span> <span class="nf">mcmove</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mf">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;c&#39;</span><span class="p">]</span> <span class="n">lattice</span><span class="p">,</span> <span class="nb">int</span> <span class="n">move_n</span><span class="p">,</span> <span class="nb">float</span> <span class="n">exp_low</span><span class="p">,</span> <span class="nb">float</span> <span class="n">exp_high</span><span class="p">):</span></pre>
-<pre class='cython code score-105 '>/* Python wrapper */
-static PyObject *__pyx_pw_7move_cy_1mcmove(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_7move_cy_mcmove[] = "Flip a spin if the energy change is beneficial";
-static PyMethodDef __pyx_mdef_7move_cy_1mcmove = {"mcmove", (PyCFunction)__pyx_pw_7move_cy_1mcmove, METH_VARARGS|METH_KEYWORDS, __pyx_doc_7move_cy_mcmove};
-static PyObject *__pyx_pw_7move_cy_1mcmove(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+<pre class="cython line score-107" onclick='toggleDiv(this)'>+<span class="">12</span>: <span class="k">def</span> <span class="nf">mcmove</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mf">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;c&#39;</span><span class="p">]</span> <span class="n">lattice</span><span class="p">,</span> <span class="nb">int</span> <span class="n">move_n</span><span class="p">,</span> <span class="nb">float</span> <span class="n">exp_low</span><span class="p">,</span> <span class="nb">float</span> <span class="n">exp_high</span><span class="p">):</span></pre>
+<pre class='cython code score-107 '>/* Python wrapper */
+static PyObject *__pyx_pw_5ising_7cython2_7move_cy_1mcmove(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_5ising_7cython2_7move_cy_mcmove[] = "Flip a spin if the energy change is beneficial";
+static PyMethodDef __pyx_mdef_5ising_7cython2_7move_cy_1mcmove = {"mcmove", (PyCFunction)__pyx_pw_5ising_7cython2_7move_cy_1mcmove, METH_VARARGS|METH_KEYWORDS, __pyx_doc_5ising_7cython2_7move_cy_mcmove};
+static PyObject *__pyx_pw_5ising_7cython2_7move_cy_1mcmove(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyArrayObject *__pyx_v_lattice = 0;
   int __pyx_v_move_n;
   float __pyx_v_exp_low;
@@ -455,12 +455,12 @@ static PyObject *__pyx_pw_7move_cy_1mcmove(PyObject *__pyx_self, PyObject *__pyx
   __pyx_L5_argtuple_error:;
   <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("mcmove", 1, 4, 4, <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args)); __PYX_ERR(0, 12, __pyx_L3_error)
   __pyx_L3_error:;
-  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("move_cy.mcmove", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("ising.cython2.move_cy.mcmove", __pyx_clineno, __pyx_lineno, __pyx_filename);
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!<span class='pyx_c_api'>__Pyx_ArgTypeTest</span>(((PyObject *)__pyx_v_lattice), __pyx_ptype_5numpy_ndarray, 1, "lattice", 0))) __PYX_ERR(0, 12, __pyx_L1_error)
-  __pyx_r = __pyx_pf_7move_cy_mcmove(__pyx_self, __pyx_v_lattice, __pyx_v_move_n, __pyx_v_exp_low, __pyx_v_exp_high);
+  __pyx_r = __pyx_pf_5ising_7cython2_7move_cy_mcmove(__pyx_self, __pyx_v_lattice, __pyx_v_move_n, __pyx_v_exp_low, __pyx_v_exp_high);
 
   /* function exit code */
   goto __pyx_L0;
@@ -471,7 +471,7 @@ static PyObject *__pyx_pw_7move_cy_1mcmove(PyObject *__pyx_self, PyObject *__pyx
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_lattice, int __pyx_v_move_n, float __pyx_v_exp_low, float __pyx_v_exp_high) {
+static PyObject *__pyx_pf_5ising_7cython2_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_lattice, int __pyx_v_move_n, float __pyx_v_exp_low, float __pyx_v_exp_high) {
   int __pyx_v_pos_x;
   int __pyx_v_pos_y;
   int __pyx_v_new_e;
@@ -479,6 +479,7 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
   PyArrayObject *__pyx_v_output = 0;
   int __pyx_v_size_x;
   int __pyx_v_size_y;
+  double __pyx_v_rand_float;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_lattice;
   __Pyx_Buffer __pyx_pybuffer_lattice;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_output;
@@ -509,7 +510,7 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
     <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer);
     <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_output.rcbuffer-&gt;pybuffer);
   <span class='pyx_c_api'>__Pyx_ErrRestore</span>(__pyx_type, __pyx_value, __pyx_tb);}
-  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("move_cy.mcmove", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("ising.cython2.move_cy.mcmove", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   goto __pyx_L2;
   __pyx_L0:;
@@ -522,14 +523,15 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
   return __pyx_r;
 }
 /* … */
-  __pyx_tuple__8 = <span class='py_c_api'>PyTuple_Pack</span>(11, __pyx_n_s_lattice, __pyx_n_s_move_n, __pyx_n_s_exp_low, __pyx_n_s_exp_high, __pyx_n_s_pos_x, __pyx_n_s_pos_y, __pyx_n_s_new_e, __pyx_n_s__7, __pyx_n_s_output, __pyx_n_s_size_x, __pyx_n_s_size_y); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_tuple__8 = <span class='py_c_api'>PyTuple_Pack</span>(12, __pyx_n_s_lattice, __pyx_n_s_move_n, __pyx_n_s_exp_low, __pyx_n_s_exp_high, __pyx_n_s_pos_x, __pyx_n_s_pos_y, __pyx_n_s_new_e, __pyx_n_s__7, __pyx_n_s_output, __pyx_n_s_size_x, __pyx_n_s_size_y, __pyx_n_s_rand_float); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 12, __pyx_L1_error)
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__8);
   <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__8);
 /* … */
-  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_7move_cy_1mcmove, NULL, __pyx_n_s_move_cy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_5ising_7cython2_7move_cy_1mcmove, NULL, __pyx_n_s_ising_cython2_move_cy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_mcmove, __pyx_t_1) &lt; 0) __PYX_ERR(0, 12, __pyx_L1_error)
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_codeobj__9 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(4, 0, 12, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_C_Users_danie_OneDrive_Programmi, __pyx_n_s_mcmove, 12, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 12, __pyx_L1_error)
 </pre><pre class="cython line score-0">&#xA0;<span class="">13</span>:     <span class="sd">&#39;&#39;&#39;Flip a spin if the energy change is beneficial&#39;&#39;&#39;</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">14</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">pos_x</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">15</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">pos_y</span></pre>
@@ -550,28 +552,34 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
 <pre class='cython code score-0 '>  __pyx_v_size_x = (__pyx_v_lattice-&gt;dimensions[0]);
 </pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">20</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">size_y</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span></pre>
 <pre class='cython code score-0 '>  __pyx_v_size_y = (__pyx_v_lattice-&gt;dimensions[1]);
-</pre><pre class="cython line score-0">&#xA0;<span class="">21</span>: </pre>
-<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">22</span>:     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">move_n</span><span class="p">):</span></pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">21</span>:     <span class="k">cdef</span> <span class="kt">double</span> <span class="nf">rand_float</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">22</span>: </pre>
+<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">23</span>:     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">move_n</span><span class="p">):</span></pre>
 <pre class='cython code score-0 '>  __pyx_t_1 = __pyx_v_move_n;
   for (__pyx_t_2 = 0; __pyx_t_2 &lt; __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v__ = __pyx_t_2;
-</pre><pre class="cython line score-0">&#xA0;<span class="">23</span>:         <span class="c">#pos_x = numpy.random.randint(0, lattice.shape[0])</span></pre>
-<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">24</span>:         <span class="n">pos_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rand</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">RAND_MAX</span><span class="o">*</span><span class="n">size_x</span><span class="p">))</span></pre>
-<pre class='cython code score-0 '>    __pyx_v_pos_x = (rand() / (RAND_MAX * __pyx_v_size_x));
-</pre><pre class="cython line score-0">&#xA0;<span class="">25</span>:         <span class="c">#pos_y = numpy.random.randint(0, lattice.shape[1])</span></pre>
-<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">26</span>:         <span class="n">pos_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rand</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">RAND_MAX</span><span class="o">*</span><span class="n">size_y</span><span class="p">))</span></pre>
-<pre class='cython code score-0 '>    __pyx_v_pos_y = (rand() / (RAND_MAX * __pyx_v_size_y));
-</pre><pre class="cython line score-0">&#xA0;<span class="">27</span>: </pre>
-<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">28</span>:         <span class="n">new_e</span> <span class="o">=</span> <span class="n">delta_e</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">)</span></pre>
-<pre class='cython code score-0 '>    __pyx_v_new_e = __pyx_f_7move_cy_delta_e(((PyArrayObject *)__pyx_v_lattice), __pyx_v_pos_x, __pyx_v_pos_y);
-</pre><pre class="cython line score-0">&#xA0;<span class="">29</span>: </pre>
-<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">30</span>:         <span class="k">if</span> <span class="n">new_e</span> <span class="o">&lt;=</span> <span class="mf">0</span><span class="p">:</span></pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">24</span>:         <span class="c">#pos_x = numpy.random.randint(0, lattice.shape[0])</span></pre>
+<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">25</span>:         <span class="n">pos_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="n">size_x</span><span class="p">)</span></pre>
+<pre class='cython code score-0 '>    __pyx_v_pos_x = (rand() % __pyx_v_size_x);
+</pre><pre class="cython line score-0">&#xA0;<span class="">26</span>:         <span class="c">#pos_y = numpy.random.randint(0, lattice.shape[1])</span></pre>
+<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">27</span>:         <span class="n">pos_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="n">size_y</span><span class="p">)</span></pre>
+<pre class='cython code score-0 '>    __pyx_v_pos_y = (rand() % __pyx_v_size_y);
+</pre><pre class="cython line score-0">&#xA0;<span class="">28</span>: </pre>
+<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">29</span>:         <span class="n">new_e</span> <span class="o">=</span> <span class="n">delta_e</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">)</span></pre>
+<pre class='cython code score-0 '>    __pyx_v_new_e = __pyx_f_5ising_7cython2_7move_cy_delta_e(((PyArrayObject *)__pyx_v_output), __pyx_v_pos_x, __pyx_v_pos_y);
+</pre><pre class="cython line score-0">&#xA0;<span class="">30</span>: </pre>
+<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">31</span>:         <span class="n">rand_float</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span></pre>
+<pre class='cython code score-0 '>    __pyx_v_rand_float = rand();
+</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">32</span>:         <span class="n">rand_float</span> <span class="o">/=</span> <span class="n">RAND_MAX</span></pre>
+<pre class='cython code score-0 '>    __pyx_v_rand_float = (__pyx_v_rand_float / RAND_MAX);
+</pre><pre class="cython line score-0">&#xA0;<span class="">33</span>: </pre>
+<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">34</span>:         <span class="k">if</span> <span class="n">new_e</span> <span class="o">&lt;=</span> <span class="mf">0</span><span class="p">:</span></pre>
 <pre class='cython code score-0 '>    __pyx_t_3 = ((__pyx_v_new_e &lt;= 0) != 0);
     if (__pyx_t_3) {
 /* … */
       goto __pyx_L5;
     }
-</pre><pre class="cython line score-2" onclick='toggleDiv(this)'>+<span class="">31</span>:             <span class="n">output</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1</span></pre>
+</pre><pre class="cython line score-2" onclick='toggleDiv(this)'>+<span class="">35</span>:             <span class="n">output</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1</span></pre>
 <pre class='cython code score-2 '>      __pyx_t_4 = __pyx_v_pos_x;
       __pyx_t_5 = __pyx_v_pos_y;
       __pyx_t_6 = -1;
@@ -585,24 +593,24 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
       } else if (unlikely(__pyx_t_5 &gt;= __pyx_pybuffernd_output.diminfo[1].shape)) __pyx_t_6 = 1;
       if (unlikely(__pyx_t_6 != -1)) {
         <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_6);
-        __PYX_ERR(0, 31, __pyx_L1_error)
+        __PYX_ERR(0, 35, __pyx_L1_error)
       }
       *__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_output.rcbuffer-&gt;pybuffer.buf, __pyx_t_4, __pyx_pybuffernd_output.diminfo[0].strides, __pyx_t_5, __pyx_pybuffernd_output.diminfo[1].strides) *= -1;
-</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">32</span>:         <span class="k">elif</span> <span class="n">new_e</span> <span class="o">==</span> <span class="mf">4</span> <span class="ow">and</span> <span class="n">exp_low</span> <span class="o">&gt;</span> <span class="n">rand</span><span class="p">():</span></pre>
+</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">36</span>:         <span class="k">elif</span> <span class="n">new_e</span> <span class="o">==</span> <span class="mf">4</span> <span class="ow">and</span> <span class="n">exp_low</span> <span class="o">&gt;</span> <span class="n">rand_float</span><span class="p">:</span></pre>
 <pre class='cython code score-0 '>    __pyx_t_7 = ((__pyx_v_new_e == 4) != 0);
     if (__pyx_t_7) {
     } else {
       __pyx_t_3 = __pyx_t_7;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_7 = ((__pyx_v_exp_low &gt; rand()) != 0);
+    __pyx_t_7 = ((__pyx_v_exp_low &gt; __pyx_v_rand_float) != 0);
     __pyx_t_3 = __pyx_t_7;
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_3) {
 /* … */
       goto __pyx_L5;
     }
-</pre><pre class="cython line score-2" onclick='toggleDiv(this)'>+<span class="">33</span>:             <span class="n">output</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1</span></pre>
+</pre><pre class="cython line score-2" onclick='toggleDiv(this)'>+<span class="">37</span>:             <span class="n">output</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1</span></pre>
 <pre class='cython code score-2 '>      __pyx_t_8 = __pyx_v_pos_x;
       __pyx_t_9 = __pyx_v_pos_y;
       __pyx_t_6 = -1;
@@ -616,17 +624,17 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
       } else if (unlikely(__pyx_t_9 &gt;= __pyx_pybuffernd_output.diminfo[1].shape)) __pyx_t_6 = 1;
       if (unlikely(__pyx_t_6 != -1)) {
         <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_6);
-        __PYX_ERR(0, 33, __pyx_L1_error)
+        __PYX_ERR(0, 37, __pyx_L1_error)
       }
       *__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_output.rcbuffer-&gt;pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_output.diminfo[0].strides, __pyx_t_9, __pyx_pybuffernd_output.diminfo[1].strides) *= -1;
-</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">34</span>:         <span class="k">elif</span> <span class="n">new_e</span> <span class="o">==</span> <span class="mf">8</span> <span class="ow">and</span> <span class="n">exp_high</span> <span class="o">&gt;</span> <span class="n">rand</span><span class="p">():</span></pre>
+</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">38</span>:         <span class="k">elif</span> <span class="n">new_e</span> <span class="o">==</span> <span class="mf">8</span> <span class="ow">and</span> <span class="n">exp_high</span> <span class="o">&gt;</span> <span class="n">rand_float</span><span class="p">:</span></pre>
 <pre class='cython code score-0 '>    __pyx_t_7 = ((__pyx_v_new_e == 8) != 0);
     if (__pyx_t_7) {
     } else {
       __pyx_t_3 = __pyx_t_7;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_7 = ((__pyx_v_exp_high &gt; rand()) != 0);
+    __pyx_t_7 = ((__pyx_v_exp_high &gt; __pyx_v_rand_float) != 0);
     __pyx_t_3 = __pyx_t_7;
     __pyx_L8_bool_binop_done:;
     if (__pyx_t_3) {
@@ -634,7 +642,7 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
     }
     __pyx_L5:;
   }
-</pre><pre class="cython line score-2" onclick='toggleDiv(this)'>+<span class="">35</span>:             <span class="n">output</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1</span></pre>
+</pre><pre class="cython line score-2" onclick='toggleDiv(this)'>+<span class="">39</span>:             <span class="n">output</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1</span></pre>
 <pre class='cython code score-2 '>      __pyx_t_10 = __pyx_v_pos_x;
       __pyx_t_11 = __pyx_v_pos_y;
       __pyx_t_6 = -1;
@@ -648,18 +656,18 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
       } else if (unlikely(__pyx_t_11 &gt;= __pyx_pybuffernd_output.diminfo[1].shape)) __pyx_t_6 = 1;
       if (unlikely(__pyx_t_6 != -1)) {
         <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_6);
-        __PYX_ERR(0, 35, __pyx_L1_error)
+        __PYX_ERR(0, 39, __pyx_L1_error)
       }
       *__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_output.rcbuffer-&gt;pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_output.diminfo[0].strides, __pyx_t_11, __pyx_pybuffernd_output.diminfo[1].strides) *= -1;
-</pre><pre class="cython line score-0">&#xA0;<span class="">36</span>: </pre>
-<pre class="cython line score-2" onclick='toggleDiv(this)'>+<span class="">37</span>:     <span class="k">return</span> <span class="n">lattice</span></pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">40</span>: </pre>
+<pre class="cython line score-2" onclick='toggleDiv(this)'>+<span class="">41</span>:     <span class="k">return</span> <span class="n">output</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_lattice));
-  __pyx_r = ((PyObject *)__pyx_v_lattice);
+  <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_output));
+  __pyx_r = ((PyObject *)__pyx_v_output);
   goto __pyx_L0;
-</pre><pre class="cython line score-0">&#xA0;<span class="">38</span>: </pre>
-<pre class="cython line score-12" onclick='toggleDiv(this)'>+<span class="">39</span>: <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">delta_e</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mf">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;c&#39;</span><span class="p">]</span> <span class="n">lattice</span><span class="p">,</span> <span class="nb">int</span> <span class="n">pos_x</span><span class="p">,</span> <span class="nb">int</span> <span class="n">pos_y</span><span class="p">):</span></pre>
-<pre class='cython code score-12 '>static int __pyx_f_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_pos_x, int __pyx_v_pos_y) {
+</pre><pre class="cython line score-0">&#xA0;<span class="">42</span>: </pre>
+<pre class="cython line score-12" onclick='toggleDiv(this)'>+<span class="">43</span>: <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">delta_e</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mf">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;c&#39;</span><span class="p">]</span> <span class="n">lattice</span><span class="p">,</span> <span class="nb">int</span> <span class="n">pos_x</span><span class="p">,</span> <span class="nb">int</span> <span class="n">pos_y</span><span class="p">):</span></pre>
+<pre class='cython code score-12 '>static int __pyx_f_5ising_7cython2_7move_cy_delta_e(PyArrayObject *__pyx_v_lattice, int __pyx_v_pos_x, int __pyx_v_pos_y) {
   int __pyx_v_size_x;
   int __pyx_v_size_y;
   int __pyx_v_energy;
@@ -674,7 +682,7 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
   __pyx_pybuffernd_lattice.rcbuffer = &amp;__pyx_pybuffer_lattice;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_v_lattice, &amp;__Pyx_TypeInfo_int, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 39, __pyx_L1_error)
+    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_v_lattice, &amp;__Pyx_TypeInfo_int, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 43, __pyx_L1_error)
   }
   __pyx_pybuffernd_lattice.diminfo[0].strides = __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.strides[0]; __pyx_pybuffernd_lattice.diminfo[0].shape = __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.shape[0]; __pyx_pybuffernd_lattice.diminfo[1].strides = __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.strides[1]; __pyx_pybuffernd_lattice.diminfo[1].shape = __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.shape[1];
 /* … */
@@ -686,7 +694,7 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
     <span class='pyx_c_api'>__Pyx_ErrFetch</span>(&amp;__pyx_type, &amp;__pyx_value, &amp;__pyx_tb);
     <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer);
   <span class='pyx_c_api'>__Pyx_ErrRestore</span>(__pyx_type, __pyx_value, __pyx_tb);}
-  <span class='pyx_c_api'>__Pyx_WriteUnraisable</span>("move_cy.delta_e", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
+  <span class='pyx_c_api'>__Pyx_WriteUnraisable</span>("ising.cython2.move_cy.delta_e", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
   __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
@@ -695,12 +703,12 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return __pyx_r;
 }
-</pre><pre class="cython line score-0">&#xA0;<span class="">40</span>:     <span class="sd">&#39;&#39;&#39;Calculates the new delta E for a given site&#39;&#39;&#39;</span></pre>
-<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">41</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">size_x</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span></pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">44</span>:     <span class="sd">&#39;&#39;&#39;Calculates the new delta E for a given site&#39;&#39;&#39;</span></pre>
+<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">45</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">size_x</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span></pre>
 <pre class='cython code score-0 '>  __pyx_v_size_x = (__pyx_v_lattice-&gt;dimensions[0]);
-</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">42</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">size_y</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span></pre>
+</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">46</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">size_y</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span></pre>
 <pre class='cython code score-0 '>  __pyx_v_size_y = (__pyx_v_lattice-&gt;dimensions[1]);
-</pre><pre class="cython line score-9" onclick='toggleDiv(this)'>+<span class="">43</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">energy</span> <span class="o">=</span> <span class="mf">2</span> <span class="o">*</span> <span class="n">lattice</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">lattice</span><span class="p">[(</span><span class="n">pos_x</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">size_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> \</pre>
+</pre><pre class="cython line score-9" onclick='toggleDiv(this)'>+<span class="">47</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">energy</span> <span class="o">=</span> <span class="mf">2</span> <span class="o">*</span> <span class="n">lattice</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">lattice</span><span class="p">[(</span><span class="n">pos_x</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">size_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> \</pre>
 <pre class='cython code score-9 '>  __pyx_t_1 = __pyx_v_pos_x;
   __pyx_t_2 = __pyx_v_pos_y;
   __pyx_t_3 = -1;
@@ -714,12 +722,12 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
   } else if (unlikely(__pyx_t_2 &gt;= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_3 = 1;
   if (unlikely(__pyx_t_3 != -1)) {
     <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_3);
-    __PYX_ERR(0, 43, __pyx_L1_error)
+    __PYX_ERR(0, 47, __pyx_L1_error)
   }
   __pyx_t_4 = (__pyx_v_pos_x - 1);
   if (unlikely(__pyx_v_size_x == 0)) {
     <span class='py_c_api'>PyErr_SetString</span>(PyExc_ZeroDivisionError, "integer division or modulo by zero");
-    __PYX_ERR(0, 43, __pyx_L1_error)
+    __PYX_ERR(0, 47, __pyx_L1_error)
   }
   __pyx_t_5 = __Pyx_mod_long(__pyx_t_4, __pyx_v_size_x);
   __pyx_t_6 = __pyx_v_pos_y;
@@ -734,15 +742,15 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
   } else if (unlikely(__pyx_t_6 &gt;= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_3 = 1;
   if (unlikely(__pyx_t_3 != -1)) {
     <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_3);
-    __PYX_ERR(0, 43, __pyx_L1_error)
+    __PYX_ERR(0, 47, __pyx_L1_error)
   }
 /* … */
   __pyx_v_energy = ((2 * (*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_2, __pyx_pybuffernd_lattice.diminfo[1].strides))) * ((((*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.buf, __pyx_t_5, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_6, __pyx_pybuffernd_lattice.diminfo[1].strides)) + (*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_9, __pyx_pybuffernd_lattice.diminfo[1].strides))) + (*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.buf, __pyx_t_11, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_12, __pyx_pybuffernd_lattice.diminfo[1].strides))) + (*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_15, __pyx_pybuffernd_lattice.diminfo[1].strides))));
-</pre><pre class="cython line score-7" onclick='toggleDiv(this)'>+<span class="">44</span>:                                    <span class="o">+</span> <span class="n">lattice</span><span class="p">[(</span><span class="n">pos_x</span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">size_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> \</pre>
+</pre><pre class="cython line score-7" onclick='toggleDiv(this)'>+<span class="">48</span>:                                    <span class="o">+</span> <span class="n">lattice</span><span class="p">[(</span><span class="n">pos_x</span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">size_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">]</span> \</pre>
 <pre class='cython code score-7 '>  __pyx_t_7 = (__pyx_v_pos_x + 1);
   if (unlikely(__pyx_v_size_x == 0)) {
     <span class='py_c_api'>PyErr_SetString</span>(PyExc_ZeroDivisionError, "integer division or modulo by zero");
-    __PYX_ERR(0, 44, __pyx_L1_error)
+    __PYX_ERR(0, 48, __pyx_L1_error)
   }
   __pyx_t_8 = __Pyx_mod_long(__pyx_t_7, __pyx_v_size_x);
   __pyx_t_9 = __pyx_v_pos_y;
@@ -757,13 +765,13 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
   } else if (unlikely(__pyx_t_9 &gt;= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_3 = 1;
   if (unlikely(__pyx_t_3 != -1)) {
     <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_3);
-    __PYX_ERR(0, 44, __pyx_L1_error)
+    __PYX_ERR(0, 48, __pyx_L1_error)
   }
-</pre><pre class="cython line score-7" onclick='toggleDiv(this)'>+<span class="">45</span>:                                    <span class="o">+</span> <span class="n">lattice</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="p">(</span><span class="n">pos_y</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">size_y</span><span class="p">]</span> \</pre>
+</pre><pre class="cython line score-7" onclick='toggleDiv(this)'>+<span class="">49</span>:                                    <span class="o">+</span> <span class="n">lattice</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="p">(</span><span class="n">pos_y</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">size_y</span><span class="p">]</span> \</pre>
 <pre class='cython code score-7 '>  __pyx_t_10 = (__pyx_v_pos_y - 1);
   if (unlikely(__pyx_v_size_y == 0)) {
     <span class='py_c_api'>PyErr_SetString</span>(PyExc_ZeroDivisionError, "integer division or modulo by zero");
-    __PYX_ERR(0, 45, __pyx_L1_error)
+    __PYX_ERR(0, 49, __pyx_L1_error)
   }
   __pyx_t_11 = __pyx_v_pos_x;
   __pyx_t_12 = __Pyx_mod_long(__pyx_t_10, __pyx_v_size_y);
@@ -778,13 +786,13 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
   } else if (unlikely(__pyx_t_12 &gt;= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_3 = 1;
   if (unlikely(__pyx_t_3 != -1)) {
     <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_3);
-    __PYX_ERR(0, 45, __pyx_L1_error)
+    __PYX_ERR(0, 49, __pyx_L1_error)
   }
-</pre><pre class="cython line score-7" onclick='toggleDiv(this)'>+<span class="">46</span>:                                    <span class="o">+</span> <span class="n">lattice</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="p">(</span><span class="n">pos_y</span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">size_y</span><span class="p">])</span></pre>
+</pre><pre class="cython line score-7" onclick='toggleDiv(this)'>+<span class="">50</span>:                                    <span class="o">+</span> <span class="n">lattice</span><span class="p">[</span><span class="n">pos_x</span><span class="p">,</span> <span class="p">(</span><span class="n">pos_y</span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">size_y</span><span class="p">])</span></pre>
 <pre class='cython code score-7 '>  __pyx_t_13 = (__pyx_v_pos_y + 1);
   if (unlikely(__pyx_v_size_y == 0)) {
     <span class='py_c_api'>PyErr_SetString</span>(PyExc_ZeroDivisionError, "integer division or modulo by zero");
-    __PYX_ERR(0, 46, __pyx_L1_error)
+    __PYX_ERR(0, 50, __pyx_L1_error)
   }
   __pyx_t_14 = __pyx_v_pos_x;
   __pyx_t_15 = __Pyx_mod_long(__pyx_t_13, __pyx_v_size_y);
@@ -799,9 +807,259 @@ static PyObject *__pyx_pf_7move_cy_mcmove(CYTHON_UNUSED PyObject *__pyx_self, Py
   } else if (unlikely(__pyx_t_15 &gt;= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_3 = 1;
   if (unlikely(__pyx_t_3 != -1)) {
     <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_3);
-    __PYX_ERR(0, 46, __pyx_L1_error)
+    __PYX_ERR(0, 50, __pyx_L1_error)
   }
-</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">47</span>:     <span class="k">return</span> <span class="n">energy</span></pre>
+</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">51</span>:     <span class="k">return</span> <span class="n">energy</span></pre>
 <pre class='cython code score-0 '>  __pyx_r = __pyx_v_energy;
+  goto __pyx_L0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">52</span>: </pre>
+<pre class="cython line score-0">&#xA0;<span class="">53</span>: </pre>
+<pre class="cython line score-63" onclick='toggleDiv(this)'>+<span class="">54</span>: <span class="k">def</span> <span class="nf">calc_energy</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mf">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;c&#39;</span><span class="p">]</span> <span class="n">lattice</span><span class="p">,</span> <span class="nb">int</span> <span class="n">grid_size</span><span class="p">):</span></pre>
+<pre class='cython code score-63 '>/* Python wrapper */
+static PyObject *__pyx_pw_5ising_7cython2_7move_cy_3calc_energy(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_5ising_7cython2_7move_cy_2calc_energy[] = "Calculates the average energy of the system";
+static PyMethodDef __pyx_mdef_5ising_7cython2_7move_cy_3calc_energy = {"calc_energy", (PyCFunction)__pyx_pw_5ising_7cython2_7move_cy_3calc_energy, METH_VARARGS|METH_KEYWORDS, __pyx_doc_5ising_7cython2_7move_cy_2calc_energy};
+static PyObject *__pyx_pw_5ising_7cython2_7move_cy_3calc_energy(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyArrayObject *__pyx_v_lattice = 0;
+  int __pyx_v_grid_size;
+  PyObject *__pyx_r = 0;
+  <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("calc_energy (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_lattice,&amp;__pyx_n_s_grid_size,0};
+    PyObject* values[2] = {0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
+      switch (pos_args) {
+        case  2: values[1] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 1);
+        case  1: values[0] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = <span class='py_c_api'>PyDict_Size</span>(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = <span class='py_c_api'>PyDict_GetItem</span>(__pyx_kwds, __pyx_n_s_lattice)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        case  1:
+        if (likely((values[1] = <span class='py_c_api'>PyDict_GetItem</span>(__pyx_kwds, __pyx_n_s_grid_size)) != 0)) kw_args--;
+        else {
+          <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("calc_energy", 1, 2, 2, 1); __PYX_ERR(0, 54, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args &gt; 0)) {
+        if (unlikely(<span class='pyx_c_api'>__Pyx_ParseOptionalKeywords</span>(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "calc_energy") &lt; 0)) __PYX_ERR(0, 54, __pyx_L3_error)
+      }
+    } else if (<span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args) != 2) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 0);
+      values[1] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 1);
+    }
+    __pyx_v_lattice = ((PyArrayObject *)values[0]);
+    __pyx_v_grid_size = <span class='pyx_c_api'>__Pyx_PyInt_As_int</span>(values[1]); if (unlikely((__pyx_v_grid_size == (int)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) __PYX_ERR(0, 54, __pyx_L3_error)
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("calc_energy", 1, 2, 2, <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args)); __PYX_ERR(0, 54, __pyx_L3_error)
+  __pyx_L3_error:;
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("ising.cython2.move_cy.calc_energy", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!<span class='pyx_c_api'>__Pyx_ArgTypeTest</span>(((PyObject *)__pyx_v_lattice), __pyx_ptype_5numpy_ndarray, 1, "lattice", 0))) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_r = __pyx_pf_5ising_7cython2_7move_cy_2calc_energy(__pyx_self, __pyx_v_lattice, __pyx_v_grid_size);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5ising_7cython2_7move_cy_2calc_energy(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_lattice, int __pyx_v_grid_size) {
+  int __pyx_v_result;
+  int __pyx_v_i;
+  int __pyx_v_j;
+  int __pyx_v_site_e;
+  int __pyx_v_size_x;
+  int __pyx_v_size_y;
+  float __pyx_v_p;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_lattice;
+  __Pyx_Buffer __pyx_pybuffer_lattice;
+  PyObject *__pyx_r = NULL;
+  <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("calc_energy", 0);
+  __pyx_pybuffer_lattice.pybuffer.buf = NULL;
+  __pyx_pybuffer_lattice.refcount = 0;
+  __pyx_pybuffernd_lattice.data = NULL;
+  __pyx_pybuffernd_lattice.rcbuffer = &amp;__pyx_pybuffer_lattice;
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_v_lattice, &amp;__Pyx_TypeInfo_int, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 54, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_lattice.diminfo[0].strides = __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.strides[0]; __pyx_pybuffernd_lattice.diminfo[0].shape = __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.shape[0]; __pyx_pybuffernd_lattice.diminfo[1].strides = __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.strides[1]; __pyx_pybuffernd_lattice.diminfo[1].shape = __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.shape[1];
+/* … */
+  /* function exit code */
+  __pyx_L1_error:;
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_20);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    <span class='pyx_c_api'>__Pyx_ErrFetch</span>(&amp;__pyx_type, &amp;__pyx_value, &amp;__pyx_tb);
+    <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer);
+  <span class='pyx_c_api'>__Pyx_ErrRestore</span>(__pyx_type, __pyx_value, __pyx_tb);}
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("ising.cython2.move_cy.calc_energy", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  goto __pyx_L2;
+  __pyx_L0:;
+  <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer);
+  __pyx_L2:;
+  <span class='refnanny'>__Pyx_XGIVEREF</span>(__pyx_r);
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return __pyx_r;
+}
+/* … */
+  __pyx_tuple__10 = <span class='py_c_api'>PyTuple_Pack</span>(9, __pyx_n_s_lattice, __pyx_n_s_grid_size, __pyx_n_s_result, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_site_e, __pyx_n_s_size_x, __pyx_n_s_size_y, __pyx_n_s_p); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 54, __pyx_L1_error)
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__10);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__10);
+/* … */
+  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_5ising_7cython2_7move_cy_3calc_energy, NULL, __pyx_n_s_ising_cython2_move_cy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_calc_energy, __pyx_t_1) &lt; 0) __PYX_ERR(0, 54, __pyx_L1_error)
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">55</span>:     <span class="sd">&#39;&#39;&#39;Calculates the average energy of the system&#39;&#39;&#39;</span></pre>
+<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">56</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">result</span> <span class="o">=</span> <span class="mf">0</span></pre>
+<pre class='cython code score-0 '>  __pyx_v_result = 0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">57</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">i</span><span class="p">,</span> <span class="nf">j</span><span class="p">,</span> <span class="nf">site_e</span></pre>
+<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">58</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">size_x</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span></pre>
+<pre class='cython code score-0 '>  __pyx_v_size_x = (__pyx_v_lattice-&gt;dimensions[0]);
+</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">59</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">size_y</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span></pre>
+<pre class='cython code score-0 '>  __pyx_v_size_y = (__pyx_v_lattice-&gt;dimensions[1]);
+</pre><pre class="cython line score-0">&#xA0;<span class="">60</span>: </pre>
+<pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">61</span>:     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size_x</span><span class="p">):</span></pre>
+<pre class='cython code score-0 '>  __pyx_t_1 = __pyx_v_size_x;
+  for (__pyx_t_2 = 0; __pyx_t_2 &lt; __pyx_t_1; __pyx_t_2+=1) {
+    __pyx_v_i = __pyx_t_2;
+</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">62</span>:         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size_y</span><span class="p">):</span></pre>
+<pre class='cython code score-0 '>    __pyx_t_3 = __pyx_v_size_y;
+    for (__pyx_t_4 = 0; __pyx_t_4 &lt; __pyx_t_3; __pyx_t_4+=1) {
+      __pyx_v_j = __pyx_t_4;
+</pre><pre class="cython line score-9" onclick='toggleDiv(this)'>+<span class="">63</span>:             <span class="n">site_e</span> <span class="o">=</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="o">-</span><span class="mf">1</span>  <span class="o">*</span> <span class="p">(</span><span class="n">lattice</span><span class="p">[(</span><span class="n">i</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">grid_size</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> \</pre>
+<pre class='cython code score-9 '>      __pyx_t_5 = __pyx_v_i;
+      __pyx_t_6 = __pyx_v_j;
+      __pyx_t_7 = -1;
+      if (__pyx_t_5 &lt; 0) {
+        __pyx_t_5 += __pyx_pybuffernd_lattice.diminfo[0].shape;
+        if (unlikely(__pyx_t_5 &lt; 0)) __pyx_t_7 = 0;
+      } else if (unlikely(__pyx_t_5 &gt;= __pyx_pybuffernd_lattice.diminfo[0].shape)) __pyx_t_7 = 0;
+      if (__pyx_t_6 &lt; 0) {
+        __pyx_t_6 += __pyx_pybuffernd_lattice.diminfo[1].shape;
+        if (unlikely(__pyx_t_6 &lt; 0)) __pyx_t_7 = 1;
+      } else if (unlikely(__pyx_t_6 &gt;= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_7 = 1;
+      if (unlikely(__pyx_t_7 != -1)) {
+        <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_7);
+        __PYX_ERR(0, 63, __pyx_L1_error)
+      }
+      __pyx_t_8 = (__pyx_v_i - 1);
+      if (unlikely(__pyx_v_grid_size == 0)) {
+        <span class='py_c_api'>PyErr_SetString</span>(PyExc_ZeroDivisionError, "integer division or modulo by zero");
+        __PYX_ERR(0, 63, __pyx_L1_error)
+      }
+      __pyx_t_9 = __Pyx_mod_long(__pyx_t_8, __pyx_v_grid_size);
+      __pyx_t_10 = __pyx_v_j;
+      __pyx_t_7 = -1;
+      if (__pyx_t_9 &lt; 0) {
+        __pyx_t_9 += __pyx_pybuffernd_lattice.diminfo[0].shape;
+        if (unlikely(__pyx_t_9 &lt; 0)) __pyx_t_7 = 0;
+      } else if (unlikely(__pyx_t_9 &gt;= __pyx_pybuffernd_lattice.diminfo[0].shape)) __pyx_t_7 = 0;
+      if (__pyx_t_10 &lt; 0) {
+        __pyx_t_10 += __pyx_pybuffernd_lattice.diminfo[1].shape;
+        if (unlikely(__pyx_t_10 &lt; 0)) __pyx_t_7 = 1;
+      } else if (unlikely(__pyx_t_10 &gt;= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_7 = 1;
+      if (unlikely(__pyx_t_7 != -1)) {
+        <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_7);
+        __PYX_ERR(0, 63, __pyx_L1_error)
+      }
+/* … */
+      __pyx_v_site_e = (((*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.buf, __pyx_t_5, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_6, __pyx_pybuffernd_lattice.diminfo[1].strides)) * -1L) * ((((*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_10, __pyx_pybuffernd_lattice.diminfo[1].strides)) + (*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.buf, __pyx_t_12, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_13, __pyx_pybuffernd_lattice.diminfo[1].strides))) + (*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_16, __pyx_pybuffernd_lattice.diminfo[1].strides))) + (*__Pyx_BufPtrCContig2d(int *, __pyx_pybuffernd_lattice.rcbuffer-&gt;pybuffer.buf, __pyx_t_18, __pyx_pybuffernd_lattice.diminfo[0].strides, __pyx_t_19, __pyx_pybuffernd_lattice.diminfo[1].strides))));
+</pre><pre class="cython line score-7" onclick='toggleDiv(this)'>+<span class="">64</span>:                                    <span class="o">+</span> <span class="n">lattice</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">grid_size</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> \</pre>
+<pre class='cython code score-7 '>      __pyx_t_11 = (__pyx_v_i + 1);
+      if (unlikely(__pyx_v_grid_size == 0)) {
+        <span class='py_c_api'>PyErr_SetString</span>(PyExc_ZeroDivisionError, "integer division or modulo by zero");
+        __PYX_ERR(0, 64, __pyx_L1_error)
+      }
+      __pyx_t_12 = __Pyx_mod_long(__pyx_t_11, __pyx_v_grid_size);
+      __pyx_t_13 = __pyx_v_j;
+      __pyx_t_7 = -1;
+      if (__pyx_t_12 &lt; 0) {
+        __pyx_t_12 += __pyx_pybuffernd_lattice.diminfo[0].shape;
+        if (unlikely(__pyx_t_12 &lt; 0)) __pyx_t_7 = 0;
+      } else if (unlikely(__pyx_t_12 &gt;= __pyx_pybuffernd_lattice.diminfo[0].shape)) __pyx_t_7 = 0;
+      if (__pyx_t_13 &lt; 0) {
+        __pyx_t_13 += __pyx_pybuffernd_lattice.diminfo[1].shape;
+        if (unlikely(__pyx_t_13 &lt; 0)) __pyx_t_7 = 1;
+      } else if (unlikely(__pyx_t_13 &gt;= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_7 = 1;
+      if (unlikely(__pyx_t_7 != -1)) {
+        <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_7);
+        __PYX_ERR(0, 64, __pyx_L1_error)
+      }
+</pre><pre class="cython line score-7" onclick='toggleDiv(this)'>+<span class="">65</span>:                                    <span class="o">+</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">grid_size</span><span class="p">]</span> \</pre>
+<pre class='cython code score-7 '>      __pyx_t_14 = (__pyx_v_j - 1);
+      if (unlikely(__pyx_v_grid_size == 0)) {
+        <span class='py_c_api'>PyErr_SetString</span>(PyExc_ZeroDivisionError, "integer division or modulo by zero");
+        __PYX_ERR(0, 65, __pyx_L1_error)
+      }
+      __pyx_t_15 = __pyx_v_i;
+      __pyx_t_16 = __Pyx_mod_long(__pyx_t_14, __pyx_v_grid_size);
+      __pyx_t_7 = -1;
+      if (__pyx_t_15 &lt; 0) {
+        __pyx_t_15 += __pyx_pybuffernd_lattice.diminfo[0].shape;
+        if (unlikely(__pyx_t_15 &lt; 0)) __pyx_t_7 = 0;
+      } else if (unlikely(__pyx_t_15 &gt;= __pyx_pybuffernd_lattice.diminfo[0].shape)) __pyx_t_7 = 0;
+      if (__pyx_t_16 &lt; 0) {
+        __pyx_t_16 += __pyx_pybuffernd_lattice.diminfo[1].shape;
+        if (unlikely(__pyx_t_16 &lt; 0)) __pyx_t_7 = 1;
+      } else if (unlikely(__pyx_t_16 &gt;= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_7 = 1;
+      if (unlikely(__pyx_t_7 != -1)) {
+        <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_7);
+        __PYX_ERR(0, 65, __pyx_L1_error)
+      }
+</pre><pre class="cython line score-7" onclick='toggleDiv(this)'>+<span class="">66</span>:                                    <span class="o">+</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="n">grid_size</span><span class="p">])</span></pre>
+<pre class='cython code score-7 '>      __pyx_t_17 = (__pyx_v_j + 1);
+      if (unlikely(__pyx_v_grid_size == 0)) {
+        <span class='py_c_api'>PyErr_SetString</span>(PyExc_ZeroDivisionError, "integer division or modulo by zero");
+        __PYX_ERR(0, 66, __pyx_L1_error)
+      }
+      __pyx_t_18 = __pyx_v_i;
+      __pyx_t_19 = __Pyx_mod_long(__pyx_t_17, __pyx_v_grid_size);
+      __pyx_t_7 = -1;
+      if (__pyx_t_18 &lt; 0) {
+        __pyx_t_18 += __pyx_pybuffernd_lattice.diminfo[0].shape;
+        if (unlikely(__pyx_t_18 &lt; 0)) __pyx_t_7 = 0;
+      } else if (unlikely(__pyx_t_18 &gt;= __pyx_pybuffernd_lattice.diminfo[0].shape)) __pyx_t_7 = 0;
+      if (__pyx_t_19 &lt; 0) {
+        __pyx_t_19 += __pyx_pybuffernd_lattice.diminfo[1].shape;
+        if (unlikely(__pyx_t_19 &lt; 0)) __pyx_t_7 = 1;
+      } else if (unlikely(__pyx_t_19 &gt;= __pyx_pybuffernd_lattice.diminfo[1].shape)) __pyx_t_7 = 1;
+      if (unlikely(__pyx_t_7 != -1)) {
+        <span class='pyx_c_api'>__Pyx_RaiseBufferIndexError</span>(__pyx_t_7);
+        __PYX_ERR(0, 66, __pyx_L1_error)
+      }
+</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">67</span>:             <span class="n">result</span> <span class="o">+=</span> <span class="n">site_e</span></pre>
+<pre class='cython code score-0 '>      __pyx_v_result = (__pyx_v_result + __pyx_v_site_e);
+    }
+  }
+</pre><pre class="cython line score-0" onclick='toggleDiv(this)'>+<span class="">68</span>:     <span class="k">cdef</span> <span class="kt">float</span> <span class="nf">p</span> <span class="o">=</span> <span class="n">result</span><span class="o">/</span><span class="mf">4</span></pre>
+<pre class='cython code score-0 '>  __pyx_v_p = __Pyx_div_long(__pyx_v_result, 4);
+</pre><pre class="cython line score-6" onclick='toggleDiv(this)'>+<span class="">69</span>:     <span class="k">return</span> <span class="n">p</span></pre>
+<pre class='cython code score-6 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
+  __pyx_t_20 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_p); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 69, __pyx_L1_error)
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_20);
+  __pyx_r = __pyx_t_20;
+  __pyx_t_20 = 0;
   goto __pyx_L0;
 </pre></div></body></html>
