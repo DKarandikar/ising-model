@@ -18,38 +18,6 @@ def mcsetup(grid_size):
     return lattice
 
 
-
-def mcmove(lattice, move_n, exp_low, exp_high):
-    '''Flip a spin if the energy change is beneficial'''
-
-    for _ in range(move_n):
-        pos_x = numpy.random.randint(0, lattice.shape[0])
-        pos_y = numpy.random.randint(0, lattice.shape[1])
-
-        new_e = delta_e(lattice, (pos_x, pos_y))
-
-        if new_e <= 0:
-            lattice[pos_x, pos_y] *= -1
-        elif new_e == 4 and exp_low > numpy.random.rand():
-            lattice[pos_x, pos_y] *= -1
-        elif new_e == 8 and exp_high > numpy.random.rand():
-            lattice[pos_x, pos_y] *= -1
-
-    return lattice
-
-def delta_e(lattice, site):
-    '''Calculates the new delta E for a given site'''
-    pos_x = site[0]
-    pos_y = site[1]
-    size_x = lattice.shape[0]
-    size_y = lattice.shape[1]
-    energy = 2 * lattice[pos_x, pos_y] * (lattice[(pos_x-1)%size_x, pos_y] \
-                                   + lattice[(pos_x+1)%size_x, pos_y] \
-                                   + lattice[pos_x, (pos_y-1)%size_y] \
-                                   + lattice[pos_x, (pos_y+1)%size_y])
-    return energy
-
-
 def calc_energy(lattice, grid_size):
     '''Calculates the average energy of the system'''
     result = 0
@@ -144,10 +112,10 @@ def gridplot(temp):
         ''' Updates the animation by flipping (potentially) 150 spins every tick '''
         lattice, lattice2 = data
 
-        lattice = mcmove(lattice, 150, exponential_low, exponential_high)
+        lattice = move_cy.mcmove(lattice, 150, exponential_low, exponential_high)
         matrix1.set_data(lattice)
 
-        lattice2 = mcmove(lattice2, 150, exponential_low2, exponential_high2)
+        lattice2 = move_cy.mcmove(lattice2, 150, exponential_low2, exponential_high2)
         matrix2.set_data(lattice2)
 
         return None
