@@ -67,7 +67,7 @@ def ising_graphs(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
     magnetizations = numpy.zeros(temp_steps)
 
     for k, temp in enumerate(temperatures):
-        values = mcrun(temp, n_0, n_max, move_n, grid_size)
+        values = move_cy.mcrun(temp, n_0, n_max, move_n, grid_size)
         energies[k] = values[0]/(grid_size**2)
         magnetizations[k] = abs(values[1]/(grid_size**2))
         print(k/temp_steps)
