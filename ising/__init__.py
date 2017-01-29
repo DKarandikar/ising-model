@@ -12,50 +12,7 @@ import matplotlib.animation as animation
 import ising.move_cy as move_cy
 
 
-def mcsetup(grid_size):
-    '''Setups up the initial lattice and spins'''
-    lattice = 2 * numpy.random.randint(2, size=(grid_size, grid_size)) - 1
-    return lattice
 
-
-def calc_energy(lattice, grid_size):
-    '''Calculates the average energy of the system'''
-    result = 0
-    for i in range(lattice.shape[0]):
-        for j in range(lattice.shape[1]):
-            site_e = lattice[i, j] * -1  * (lattice[(i-1)%grid_size, j] \
-                                   + lattice[(i+1)%grid_size, j] \
-                                   + lattice[i, (j-1)%grid_size] \
-                                   + lattice[i, (j+1)%grid_size])
-            result += site_e
-
-    return result/(4)
-
-def calc_magnet(lattice):
-    '''Sums over all spins to calculate magnetization'''
-    magnet = numpy.sum(lattice)
-    return magnet
-
-
-def mcrun(temp, n_0, n_max, move_n, grid_size):
-    '''Runs an entire simulation for a given temperature and returns the energy average'''
-    lattice = mcsetup(grid_size)
-
-    exponential_low = numpy.exp(-1*4*(1/temp))
-    exponential_high = numpy.exp(-1*8*(1/temp))
-
-    for _ in range(n_0):
-        lattice = move_cy.mcmove(lattice, move_n, exponential_low, exponential_high)
-
-    energy = 0
-    magnet = 0
-
-    for _ in range(n_max):
-        lattice = move_cy.mcmove(lattice, move_n, exponential_low, exponential_high)
-        energy += move_cy.calc_energy(lattice, grid_size)
-        magnet += calc_magnet(lattice)
-
-    return (energy/n_max, magnet/n_max)
 
 def ising_graphs(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
     '''Runs multiple temp simulations and then produces relevant graphs'''
@@ -100,8 +57,8 @@ def gridplot(temp):
     exponential_low2 = numpy.exp(-1*4*(1/(temp+5)))
     exponential_high2 = numpy.exp(-1*8*(1/(temp+5)))
 
-    lattice = mcsetup(grid_size)
-    lattice2 = mcsetup(grid_size)
+    lattice = move_cy.mcsetup(grid_size)
+    lattice2 = move_cy.mcsetup(grid_size)
 
     def data_gen():
         '''Returns the lattice to the animation update'''

@@ -1,4 +1,6 @@
 import numpy
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 
 def mcmove(lattice, move_n, exp_low, exp_high):
@@ -64,14 +66,49 @@ def mcrun(temp, n_0, n_max, move_n, grid_size):
     exponential_high = numpy.exp(-1*8*(1/temp))
 
     for _ in range(n_0):
-        lattice = move_cy.mcmove(lattice, move_n, exponential_low, exponential_high)
+        lattice = mcmove(lattice, move_n, exponential_low, exponential_high)
 
     energy = 0
     magnet = 0
 
     for _ in range(n_max):
-        lattice = move_cy.mcmove(lattice, move_n, exponential_low, exponential_high)
-        energy += move_cy.calc_energy(lattice, grid_size)
+        lattice = mcmove(lattice, move_n, exponential_low, exponential_high)
+        energy += calc_energy(lattice, grid_size)
         magnet += calc_magnet(lattice)
 
     return (energy/n_max, magnet/n_max)
+
+    
+def ising_graphs(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
+    '''Runs multiple temp simulations and then produces relevant graphs'''
+
+    grid_size = 16
+
+    temperatures = numpy.linspace(temp_range[0], temp_range[1], temp_steps)
+    energies = numpy.zeros(temp_steps)
+    magnetizations = numpy.zeros(temp_steps)
+
+    for k, temp in enumerate(temperatures):
+        values = mcrun(temp, n_0, n_max, move_n, grid_size)
+        energies[k] = values[0]/(grid_size**2)
+        magnetizations[k] = abs(values[1]/(grid_size**2))
+        print(k/temp_steps)
+
+    figure = plt.figure(figsize=(18, 10), dpi=80, facecolor='w', edgecolor='k')
+
+    dummy_sp = figure.add_subplot(1, 2, 1)
+    plt.plot(temperatures, energies, 'o', color="#A60628", label=' Energy')
+    plt.xlabel(r'$Temperature [J/k_{B}]$', fontsize=20)
+    plt.ylabel(r'$Energy [J]$', fontsize=20)
+
+    dummy_sp = figure.add_subplot(1, 2, 2)
+    plt.plot(temperatures, magnetizations, 'o', color="#A60628", label=' Magnetization')
+    plt.xlabel(r'$Temperature [J/k_{B}]$', fontsize=20)
+    plt.ylabel(r'$Magnetization [\mu]$', fontsize=20)
+
+    if not testing:
+        plt.show()
+
+    print("done")
+
+ising_graphs(100, 100, 50, 50, (1, 4), False)
