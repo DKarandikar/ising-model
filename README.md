@@ -4,11 +4,11 @@ Basic Ising model using monte-carlo in python
 
 # Overview and Aims
 
-Basic implementation of a monte-carlo method to the 2d Ising model. Currently the only result is an energy-temperature graph showing the phase shift around 2.5 T. 
+Basic implementation of a monte-carlo method to the 2d Ising model. 
 
-Want to implement more graphs, such as heat capacity and magnetization to see the phase shift from more angles. Also potentially want to run it as an observable simulation to see the phases form.
+Phase change can be seen around the T=2.5 mark.
 
-Performance: convert the actual simulation to Cython to increase efficiency
+Aims: want to implement more graphs, such as heat capacity to see the phase shift from more angles. 
 
 ## Installation
 
@@ -43,7 +43,15 @@ Result should be a matplotlib graph of the form:
 
 To use more generally import ising, then use:
 
-        ising_graphs(n_0, n_max, move_n, T_steps, T_range)
+        ising.standard()
+
+or: 
+
+        ising.gridplot(1)
+
+or more generally:
+
+        ising.ising_graphs(n_0, n_max, move_n, T_steps, T_range)
 
 Where:
 
@@ -56,6 +64,12 @@ Where:
 Overall, the script should try to flip a spin (n_0 + n_max)* move_n * T_steps times per graph
 
 ## Changelog
+
+### [0.4.2] - 29/01/2017
+
+- Finished migrating to cython code
+- Anything that doesn't require matplotlib should now be in the pyd file
+- Significant speed increase as a result
 
 ### [0.4.1] - 28/01/2017
 
@@ -83,7 +97,6 @@ Overall, the script should try to flip a spin (n_0 + n_max)* move_n * T_steps ti
 - Minimal changes to main functionality
 - Migrated test to a proper nosetests structure
 - Setup should have relevant dependencies 
-
 
 ### [0.0.1] - 25/01/2017
 
