@@ -9,7 +9,7 @@ import numpy
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-from ising.cython2 import move_cy
+import ising.move_cy as move_cy
 
 
 def mcsetup(grid_size):
@@ -157,3 +157,6 @@ def time_test():
 def standard():
     '''Runs a standard density simulation'''
     ising_graphs(400, 400, 300, 100, (1, 4))
+
+
+#gridplot(1)

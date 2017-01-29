@@ -57,6 +57,11 @@ Overall, the script should try to flip a spin (n_0 + n_max)* move_n * T_steps ti
 
 ## Changelog
 
+### [0.4.1] - 28/01/2017
+
+- Significant structural changes
+- Setup.py files changed to actually work
+
 ### [0.4.0] - 28/01/2017
 
 - Implemented some cython that is temporarily working 

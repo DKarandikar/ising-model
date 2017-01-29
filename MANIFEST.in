@@ -1,3 +1,4 @@
 include README.md
 include images/*.png
 include LICENSE
+recursive-include ising *

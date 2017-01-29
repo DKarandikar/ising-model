@@ -2,7 +2,7 @@
 import numpy
 import timeit
 import move
-#import move_cy
+import ising.move_cy as move_cy
 
 def mcsetup(grid_size):
     '''Setups up the initial lattice and spins'''
@@ -22,4 +22,4 @@ p= timeit.timeit('move_cy.mcmove(lattice,200,exponential_low, exponential_high)'
 
 print(p)
 
-#print(move_cy.calc_energy(mcsetup(16),16))
+print(move_cy.calc_energy(mcsetup(16),16))
