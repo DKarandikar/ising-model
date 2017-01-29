@@ -9,80 +9,10 @@ import numpy
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-
-def mcsetup(grid_size):
-    '''Setups up the initial lattice and spins'''
-    lattice = 2 * numpy.random.randint(2, size=(grid_size, grid_size)) - 1
-    return lattice
+import ising.move_cy as move_cy
 
 
 
-def mcmove(lattice, move_n, exponentials):
-    '''Flip a spin if the energy change is beneficial'''
-
-    for _ in range(move_n):
-        pos_x = numpy.random.randint(0, lattice.shape[0])
-        pos_y = numpy.random.randint(0, lattice.shape[1])
-
-        new_e = delta_e(lattice, (pos_x, pos_y))
-
-        if new_e <= 0:
-            lattice[pos_x, pos_y] *= -1
-        elif exponentials[new_e] > numpy.random.rand():
-            lattice[pos_x, pos_y] *= -1
-
-    return lattice
-
-def delta_e(lattice, site):
-    '''Calculates the new delta E for a given site'''
-    pos_x = site[0]
-    pos_y = site[1]
-    size_x = lattice.shape[0]
-    size_y = lattice.shape[1]
-    energy = 2 * lattice[pos_x, pos_y] * (lattice[(pos_x-1)%size_x, pos_y] \
-                                   + lattice[(pos_x+1)%size_x, pos_y] \
-                                   + lattice[pos_x, (pos_y-1)%size_y] \
-                                   + lattice[pos_x, (pos_y+1)%size_y])
-    return energy
-
-
-def calc_energy(lattice, grid_size):
-    '''Calculates the average energy of the system'''
-    result = 0
-    for i in range(lattice.shape[0]):
-        for j in range(lattice.shape[1]):
-            site_e = lattice[i, j] * -1  * (lattice[(i-1)%grid_size, j] \
-                                   + lattice[(i+1)%grid_size, j] \
-                                   + lattice[i, (j-1)%grid_size] \
-                                   + lattice[i, (j+1)%grid_size])
-            result += site_e
-
-    return result/(4)
-
-def calc_magnet(lattice):
-    '''Sums over all spins to calculate magnetization'''
-    magnet = numpy.sum(lattice)
-    return magnet
-
-
-def mcrun(temp, n_0, n_max, move_n, grid_size):
-    '''Runs an entire simulation for a given temperature and returns the energy average'''
-    lattice = mcsetup(grid_size)
-
-    exponentials = {4 : numpy.exp(-1*4*(1/temp)), 8 : numpy.exp(-1*8*(1/temp))}
-
-    for _ in range(n_0):
-        lattice = mcmove(lattice, move_n, exponentials)
-
-    energy = 0
-    magnet = 0
-
-    for _ in range(n_max):
-        lattice = mcmove(lattice, move_n, exponentials)
-        energy += calc_energy(lattice, grid_size)
-        magnet += calc_magnet(lattice)
-
-    return (energy/n_max, magnet/n_max)
 
 def ising_graphs(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
     '''Runs multiple temp simulations and then produces relevant graphs'''
@@ -94,7 +24,7 @@ def ising_graphs(n_0, n_max, move_n, temp_steps, temp_range, testing=False):
     magnetizations = numpy.zeros(temp_steps)
 
     for k, temp in enumerate(temperatures):
-        values = mcrun(temp, n_0, n_max, move_n, grid_size)
+        values = move_cy.mcrun(temp, n_0, n_max, move_n, grid_size)
         energies[k] = values[0]/(grid_size**2)
         magnetizations[k] = abs(values[1]/(grid_size**2))
         print(k/temp_steps)
@@ -122,11 +52,13 @@ def gridplot(temp):
 
     grid_size = 100
 
-    exponentials = {4 : numpy.exp(-1*4*(1/temp)), 8 : numpy.exp(-1*8*(1/temp))}
-    exponentials2 = {4 : numpy.exp(-1*4*(1/(temp+5))), 8 : numpy.exp(-1*8*(1/(temp+5)))}
+    exponential_low = numpy.exp(-1*4*(1/temp))
+    exponential_high = numpy.exp(-1*8*(1/temp))
+    exponential_low2 = numpy.exp(-1*4*(1/(temp+5)))
+    exponential_high2 = numpy.exp(-1*8*(1/(temp+5)))
 
-    lattice = mcsetup(grid_size)
-    lattice2 = mcsetup(grid_size)
+    lattice = move_cy.mcsetup(grid_size)
+    lattice2 = move_cy.mcsetup(grid_size)
 
     def data_gen():
         '''Returns the lattice to the animation update'''
@@ -137,10 +69,10 @@ def gridplot(temp):
         ''' Updates the animation by flipping (potentially) 150 spins every tick '''
         lattice, lattice2 = data
 
-        lattice = mcmove(lattice, 150, exponentials)
+        lattice = move_cy.mcmove(lattice, 150, exponential_low, exponential_high)
         matrix1.set_data(lattice)
 
-        lattice2 = mcmove(lattice2, 150, exponentials2)
+        lattice2 = move_cy.mcmove(lattice2, 150, exponential_low2, exponential_high2)
         matrix2.set_data(lattice2)
 
         return None
@@ -182,3 +114,6 @@ def time_test():
 def standard():
     '''Runs a standard density simulation'''
     ising_graphs(400, 400, 300, 100, (1, 4))
+
+
+#gridplot(1)
